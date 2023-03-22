@@ -1,0 +1,39 @@
+{
+  "source": ["src/styles/_tokens/*.json"],
+  "platforms": {
+    "scss": {
+      "transformGroup": "custom/scss",
+      "buildPath": "src/styles/_generated/scss/",
+      "files": [
+        {
+          "destination": "_variables.scss",
+          "format": "scss/variables"
+        }
+      ]
+    },
+    "css": {
+      "transformGroup": "custom/css",
+      "buildPath": "src/styles/_generated/css/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables",
+          "filter": "validToken",
+          "options": {
+            "showFileHeader": false
+          }
+        }
+      ]
+    },
+    "json-flat": {
+      "transformGroup": "js",
+      "buildPath": "src/styles/_generated/json/",
+      "files": [
+        {
+          "destination": "styles.json",
+          "format": "json/flat"
+        }
+      ]
+    }
+  }
+}
