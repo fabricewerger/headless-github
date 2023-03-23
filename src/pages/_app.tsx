@@ -1,5 +1,12 @@
 import '@/styles/globals.css'
+import Logo from '@/ui/components/content/Logo'
 
-export default function App() {
-  return <div className='block'>Hello</div>
+const App = () => {
+  return (
+    <div className='bg-surface-black w-screen h-screen flex items-center justify-center'>
+      <Logo variant='standard' />
+    </div>
+  )
 }
+
+export default App
