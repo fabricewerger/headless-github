@@ -7,13 +7,21 @@
     "generate:schema": "graphql-code-generator --config codegen.ts",
     "storybook": "start-storybook -p 6006 -s ./public",
     "dev": "next dev",
+    "pre-commit": "lint-staged",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "pre-commit": "lint-staged"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
+    "@heroicons/react": "^2.0.16",
+    "@radix-ui/react-accordion": "^1.1.1",
+    "@radix-ui/react-avatar": "^1.0.2",
+    "@radix-ui/react-checkbox": "^1.0.3",
+    "@radix-ui/react-select": "^1.2.1",
+    "@radix-ui/react-slider": "^1.1.1",
+    "@radix-ui/react-switch": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.5",
     "graphql": "^16.6.0",
     "next": "13.2.4",
     "react": "18.2.0",
