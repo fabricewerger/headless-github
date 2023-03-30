@@ -2,6 +2,10 @@
   "name": "youwe-headless-quickstart",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "Please use yarn engine",
+    "yarn": ">=1.x"
+  },
   "scripts": {
     "generate:tokens": "node ./src/lib/utils/transformTokens.js",
     "generate:schema": "graphql-code-generator --config codegen.ts",
