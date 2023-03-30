@@ -8,8 +8,9 @@ This is a Nextjs 13 instance with Typescript, Tailwind and Storybook support.
 
 ### 1. Use the correct version of node and npm
 
-Please be aware NPM is not allowed <br />use npm Please install [NVM](https://github.com/nvm-sh/nvm) then run in the root folder<br /> Get right Yarn version:
-nvm use
+Please be aware NPM is not allowed, use yarn <br />
+Please install [NVM](https://github.com/nvm-sh/nvm) then run in the root folder<br />
+Get right yarn version: nvm use
 
 ### 2. Install dependencies
 
@@ -17,7 +18,8 @@ Install: yarn install
 
 ### 3. Generate tokens
 
-Generate tokens: yarn run generate:tokens
+Generate tokens: yarn run <br />
+generate:tokens
 
 ### 4. Generate types from Graphql
 
@@ -25,7 +27,7 @@ Generate schema: yarn
 
 ### 5. Lift off :rocket:
 
-Run Storybook: yarn storybook
+Run Storybook: yarn storybook <br />
 Begin developing: yarn dev
 
 ## Figma
