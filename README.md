@@ -1,6 +1,6 @@
 # UI Component Library, Design System Integration & Headless Tooling
 
-This is a Youwe internal project styling, scriptint and tooling for the integration of a design system into a headless project.
+This is a Youwe internal project to outline the styling, scripting and tooling required for the integration of a design system into a headless project.
 
 This is a Next.js 13 instance with Typescript, Tailwind and Storybook support.
 
