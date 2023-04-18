@@ -1,14 +1,14 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Logo from './Logo'
 
-export default {
+const logo: Meta<typeof Logo> = {
   title: 'Components/Content/Logo',
   component: Logo,
   argTypes: {
     variant: {
       name: 'variant',
-      description: 'Select the variant type',
+      description: 'Set the variant type',
       control: {
         type: 'radio',
         labels: {
@@ -23,23 +23,32 @@ export default {
     },
     size: {
       name: 'size',
-      description: 'Select the Logo size',
+      description: 'Set the logo size',
       control: {
-        type: 'radio',
+        type: 'select',
+      },
+      options: ['md'],
+      defaultValue: 'md',
+    },
+    alt: {
+      table: {
+        disable: true,
       },
     },
   },
-} as ComponentMeta<typeof Logo>
+} as Meta<typeof Logo>
 
-const Template: ComponentStory<typeof Logo> = (args) => (
-  <div className='p-4'>
-    <Logo {...args} />
-  </div>
-)
+export default logo
+type Story = StoryObj<typeof logo>
 
-export const Standard = Template.bind({})
-
-Standard.args = {
-  variant: 'standard',
-  size: 'md',
+export const Primary: Story = {
+  args: {
+    variant: 'standard',
+    size: 'md',
+  },
+  render: (args) => (
+    <div className='p-4 bg-surface-black'>
+      <Logo {...args} />
+    </div>
+  ),
 }

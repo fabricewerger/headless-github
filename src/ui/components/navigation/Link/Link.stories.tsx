@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Link from './Link'
 
-export default {
+const link: Meta<typeof Link> = {
   title: 'Components/Navigation/Conditional Link',
   component: Link,
   argTypes: {
@@ -37,25 +37,21 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Link>
-
-const Template: ComponentStory<typeof Link> = (args) => (
-  <div className='p-4'>
-    <Link {...args} />
-  </div>
-)
-
-export const InternalLink = Template.bind({})
-
-InternalLink.args = {
-  children: <>This is a Link</>,
-  href: '/',
 }
 
-export const ExternalLink = Template.bind({})
+export default link
+type Story = StoryObj<typeof Link>
 
-ExternalLink.args = {
-  children: <>This is a Link</>,
-  href: 'https://youtube.com',
-  target: '_blank',
+export const Primary: Story = {
+  args: {
+    children: <>This is a Link</>,
+    href: 'https://youtube.com',
+    target: '_blank',
+    disabled: false,
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Link {...args} />
+    </div>
+  ),
 }

@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Rating from './Rating'
 
-export default {
+const rating: Meta<typeof Rating> = {
   title: 'Components/Content/Rating',
   component: Rating,
   argTypes: {
@@ -15,18 +15,18 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Rating>
+}
 
-const Template: ComponentStory<typeof Rating> = (args) => {
-  return (
+export default rating
+type Story = StoryObj<typeof Rating>
+
+export const Primary: Story = {
+  args: {
+    rating: 3.5,
+  },
+  render: (args) => (
     <div className='p-4'>
       <Rating {...args} />
     </div>
-  )
-}
-
-export const Primary = Template.bind({})
-
-Primary.args = {
-  rating: 3.5,
+  ),
 }

@@ -1,29 +1,37 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Loading from './Loading'
 
-export default {
+const loading: Meta<typeof Loading> = {
   title: 'Components/Utility/Loading',
   component: Loading,
   argTypes: {
     size: {
       name: 'size',
-      description: 'Select the Icon size',
+      description: 'Set the size',
       control: {
-        type: 'radio',
+        type: 'select',
       },
+      options: ['sm', 'md', 'lg'],
+    },
+    variant: {
+      name: 'variant',
+      description: 'Set the variant',
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'neutral', 'white'],
     },
   },
-} as ComponentMeta<typeof Loading>
+}
 
-const Template: ComponentStory<typeof Loading> = (args) => (
-  <div className='align-items flex h-full w-full items-center justify-center p-4'>
-    <Loading {...args} />
-  </div>
-)
+export default loading
+type Story = StoryObj<typeof Loading>
 
-export const Dots = Template.bind({})
-
-Dots.args = {
-  size: 'md',
+export const Primary: Story = {
+  render: (args) => (
+    <div className='p-4'>
+      <Loading {...args} />
+    </div>
+  ),
 }

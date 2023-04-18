@@ -1,17 +1,12 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Breadcrumbs from './Breadcrumbs'
 
-export default {
+const breadCrumbs: Meta<typeof Breadcrumbs> = {
   title: 'Components/Navigation/Breadcrumbs',
   component: Breadcrumbs,
   argTypes: {
     breadcrumbs: {
-      table: {
-        disable: true,
-      },
-    },
-    backCallback: {
       table: {
         disable: true,
       },
@@ -22,15 +17,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Breadcrumbs>
-
-const Template: ComponentStory<typeof Breadcrumbs> = (args) => {
-  return (
-    <div className={`p-0`}>
-      <Breadcrumbs {...args} />
-    </div>
-  )
 }
+
+export default breadCrumbs
+type Story = StoryObj<typeof Breadcrumbs>
 
 const breadcrumbs = [
   {
@@ -45,9 +35,14 @@ const breadcrumbs = [
   },
 ]
 
-export const Base = Template.bind({})
-
-Base.args = {
-  breadcrumbs: breadcrumbs,
-  currentUrl: '/',
+export const Primary: Story = {
+  args: {
+    breadcrumbs: breadcrumbs,
+    currentUrl: '/',
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Breadcrumbs {...args} />
+    </div>
+  ),
 }

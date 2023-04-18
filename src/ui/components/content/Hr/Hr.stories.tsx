@@ -1,19 +1,21 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Hr from './Hr'
 
-export default {
+const hr: Meta<typeof Hr> = {
   title: 'Components/Content/Hr',
   component: Hr,
   argTypes: {},
-} as ComponentMeta<typeof Hr>
+}
 
-const Template: ComponentStory<typeof Hr> = () => (
-  <div className='p-4'>
-    <Hr />
-  </div>
-)
+export default hr
+type Story = StoryObj<typeof Hr>
 
-export const Primary = Template.bind({})
-
-Primary.args = {}
+export const Primary: Story = {
+  args: {},
+  render: () => (
+    <div className='p-4'>
+      <Hr />
+    </div>
+  ),
+}

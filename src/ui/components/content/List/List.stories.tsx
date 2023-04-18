@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import List from './List'
 
-export default {
+const list: Meta<typeof List> = {
   title: 'Components/Content/List',
   component: List,
   argTypes: {
@@ -12,13 +12,23 @@ export default {
       control: {
         type: 'radio',
       },
+      options: ['row', 'column'],
       defaultValue: false,
     },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
   },
-} as ComponentMeta<typeof List>
+} as Meta<typeof List>
 
-const Template: ComponentStory<typeof List> = (args) => {
-  return (
+export default list
+type Story = StoryObj<typeof list>
+
+export const Primary: Story = {
+  args: { direction: 'column' },
+  render: (args) => (
     <div className='w-96 p-4'>
       <List {...args}>
         <span className='text-base'>List item</span>
@@ -26,11 +36,5 @@ const Template: ComponentStory<typeof List> = (args) => {
         <span className='text-base'>List item</span>
       </List>
     </div>
-  )
-}
-
-export const Primary = Template.bind({})
-
-Primary.args = {
-  direction: 'column',
+  ),
 }

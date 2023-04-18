@@ -1,9 +1,9 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import { useState } from 'react'
+import { useArgs } from '@storybook/client-api'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Pagination from './Pagination'
 
-export default {
+const pagination: Meta<typeof Pagination> = {
   title: 'Components/Navigation/Pagination',
   component: Pagination,
   argTypes: {
@@ -26,34 +26,40 @@ export default {
       options: [1, 2, 3],
       defaultValue: 3,
     },
-    currentIndex: {
+    currentPage: {
+      table: {
+        disable: true,
+      },
+    },
+    onChange: {
       table: {
         disable: true,
       },
     },
   },
-} as ComponentMeta<typeof Pagination>
+}
 
-const Template: ComponentStory<typeof Pagination> = (args) => {
-  const [value, setValue] = useState(args.currentPage)
+export default pagination
+type Story = StoryObj<typeof Pagination>
 
-  return (
+export const Primary: Story = {
+  args: {
+    totalPages: 10,
+    currentPage: 2,
+  },
+  decorators: [
+    (Story, Context) => {
+      const [{ value }, updateArgs] = useArgs()
+      return Story({ ...Context, updateArgs, value })
+    },
+  ],
+  render: (args, { updateArgs, value }) => (
     <div className='p-4'>
       <Pagination
         {...args}
-        onChange={(...params) => {
-          args.onChange && args.onChange(...params)
-          setValue(...params)
-        }}
+        onChange={(value) => updateArgs(value)}
         currentPage={value}
       />
     </div>
-  )
-}
-
-export const Primary = Template.bind({})
-
-Primary.args = {
-  totalPages: 10,
-  currentPage: 2,
+  ),
 }

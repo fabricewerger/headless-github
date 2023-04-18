@@ -1,9 +1,9 @@
 import { useArgs } from '@storybook/client-api'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Select, { SelectOption } from './Select'
 
-export default {
+const select: Meta<typeof Select> = {
   title: 'Components/Inputs/Select',
   component: Select,
   argTypes: {
@@ -21,31 +21,36 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Select>
-
-const Template: ComponentStory<typeof Select> = (args) => {
-  const [{ value }, updateArgs] = useArgs()
-
-  return (
-    <div className='p-4'>
-      <Select
-        {...args}
-        value={value}
-        placeholder='Select'
-        triggerText='View by:'
-        onValueChange={(value) => updateArgs({ value })}
-      >
-        <SelectOption value='Option 1'>Option 1</SelectOption>
-        <SelectOption value='Option 2'>Option 2</SelectOption>
-        <SelectOption value='Option 3'>Option 3</SelectOption>
-      </Select>
-    </div>
-  )
 }
 
-export const Standard = Template.bind({})
+export default select
+type Story = StoryObj<typeof Select>
 
-Standard.args = {
-  placeholder: 'Select:',
-  value: 'Option 1',
+export const Primary: Story = {
+  args: {
+    disabled: false,
+  },
+  decorators: [
+    (Story, Context) => {
+      const [{ value }, updateArgs] = useArgs()
+      return Story({ ...Context, updateArgs, value })
+    },
+  ],
+  render: (args, { updateArgs, value }) => {
+    return (
+      <div className='p-4'>
+        <Select
+          {...args}
+          value={value}
+          placeholder='Select'
+          triggerText='View by:'
+          onValueChange={(value) => updateArgs({ value })}
+        >
+          <SelectOption value='Option 1'>Option 1</SelectOption>
+          <SelectOption value='Option 2'>Option 2</SelectOption>
+          <SelectOption value='Option 3'>Option 3</SelectOption>
+        </Select>
+      </div>
+    )
+  },
 }

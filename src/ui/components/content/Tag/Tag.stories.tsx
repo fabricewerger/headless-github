@@ -1,10 +1,10 @@
 import { EyeIcon } from '@heroicons/react/24/solid'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Tag from './Tag'
 
-export default {
-  title: 'Components/Tag',
+const tag: Meta<typeof Tag> = {
+  title: 'Components/Content/Tag',
   component: Tag,
   argTypes: {
     children: {
@@ -45,71 +45,59 @@ export default {
       },
       if: { arg: 'icon' },
     },
-    type: {
-      table: {
-        disable: true,
-      },
-    },
     className: {
       table: {
         disable: true,
       },
     },
   },
-} as ComponentMeta<typeof Tag>
-
-const Template: ComponentStory<typeof Tag> = (args) => (
-  <div className='p-4'>
-    <Tag {...args} />
-  </div>
-)
-
-export const Red = Template.bind({})
-
-Red.args = {
-  children: 'Almost sold out',
-  size: 'sm',
-  variant: 'red',
 }
 
-export const Blue = Template.bind({})
+export default tag
+type Story = StoryObj<typeof Tag>
 
-Blue.args = {
-  children: 'Very popular',
-  size: 'sm',
-  variant: 'blue',
+const Base: Story = {
+  render: (args) => (
+    <div className='p-4'>
+      <Tag {...args} />
+    </div>
+  ),
 }
 
-export const Yellow = Template.bind({})
-
-Yellow.args = {
-  children: 'Only 3 left',
-  size: 'sm',
-  variant: 'yellow',
+export const Error: Story = {
+  ...Base,
+  args: {
+    children: 'Almost sold out',
+    size: 'sm',
+    variant: 'error',
+  },
 }
 
-export const Icon = Template.bind({})
-
-Icon.args = {
-  children: 'Only 3 left',
-  size: 'sm',
-  variant: 'icon',
-  icon: <EyeIcon className='h-4 w-4' />,
-  iconPosition: 'left',
+export const Info: Story = {
+  ...Base,
+  args: {
+    children: 'Very popular',
+    size: 'sm',
+    variant: 'info',
+  },
 }
 
-export const Amount = Template.bind({})
-
-Amount.args = {
-  children: '4000',
-  size: 'sm',
-  variant: 'amount',
+export const Attention: Story = {
+  ...Base,
+  args: {
+    children: 'Only 3 left',
+    size: 'sm',
+    variant: 'attention',
+  },
 }
 
-export const Disabled = Template.bind({})
-
-Disabled.args = {
-  children: '4000',
-  size: 'sm',
-  variant: 'disabled',
+export const WithIcon: Story = {
+  ...Base,
+  args: {
+    children: 'Almost sold out',
+    size: 'sm',
+    variant: 'icon',
+    icon: <EyeIcon className='h-4 w-4' />,
+    iconPosition: 'left',
+  },
 }

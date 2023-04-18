@@ -1,18 +1,19 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { StarIcon } from '@heroicons/react/24/outline'
 
 import Icon from './Icon'
 
-export default {
+const icon: Meta<typeof Icon> = {
   title: 'Components/Content/Icon',
   component: Icon,
   argTypes: {
     size: {
       name: 'size',
-      description: 'Select the Icon size',
+      description: 'Set the Icon size',
       control: {
         type: 'radio',
       },
+      options: ['lg', 'md', 'sm'],
     },
     children: {
       table: {
@@ -20,17 +21,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Icon>
+}
 
-const Template: ComponentStory<typeof Icon> = (args) => (
-  <div className='p-4'>
-    <Icon {...args} />
-  </div>
-)
+export default icon
+type Story = StoryObj<typeof Icon>
 
-export const Primary = Template.bind({})
-
-Primary.args = {
-  size: 'md',
-  children: <StarIcon />,
+export const Primary: Story = {
+  args: { size: 'md', children: <StarIcon /> },
+  render: (args) => (
+    <div className='p-4'>
+      <Icon {...args} />
+    </div>
+  ),
 }

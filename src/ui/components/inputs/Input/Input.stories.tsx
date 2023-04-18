@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Input from './Input'
 
-export default {
+const input: Meta<typeof Input> = {
   title: 'Components/Inputs/Input',
   component: Input,
   argTypes: {
@@ -11,42 +11,103 @@ export default {
         disable: true,
       },
     },
-    placeholder: {
-      name: 'placeholder',
-      description: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'Placeholder',
+    type: {
+      name: 'type',
+      description: 'Set type of input',
+      control: 'select',
+      options: ['text', 'email', 'password', 'search', 'number'],
     },
     disabled: {
       name: 'disabled',
       description: 'Disabled',
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
       defaultValue: false,
     },
     error: {
       name: 'error',
       description: 'Error',
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
       defaultValue: false,
     },
     success: {
       name: 'success',
       description: 'Success',
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
       defaultValue: false,
     },
+    hint: {
+      table: {
+        disable: true,
+      },
+    },
+    placeholder: {
+      table: {
+        disable: true,
+      },
+    },
   },
-} as ComponentMeta<typeof Input>
+}
 
-const Template: ComponentStory<typeof Input> = (args) => (
+export default input
+type Story = StoryObj<typeof Input>
+
+const BaseInput: Story = {
+  render: (args) => (
+    <div className='p-4'>
+      <Input {...args} />
+    </div>
+  ),
+}
+
+export const Primary: Story = {
+  ...BaseInput,
+  args: {
+    label: 'Your name',
+    required: true,
+    error: false,
+    disabled: false,
+    success: false,
+    type: 'text',
+  },
+}
+
+export const Error: Story = {
+  ...BaseInput,
+  args: {
+    label: 'Your name',
+    required: true,
+    error: true,
+    disabled: false,
+    success: false,
+    type: 'text',
+  },
+}
+
+export const Success: Story = {
+  ...BaseInput,
+  args: {
+    label: 'Your name',
+    required: true,
+    error: false,
+    disabled: false,
+    success: true,
+    type: 'text',
+  },
+}
+
+export const Password: Story = {
+  ...BaseInput,
+  args: {
+    label: 'Your name',
+    required: true,
+    error: false,
+    disabled: false,
+    success: false,
+    type: 'password',
+  },
+}
+
+/*const Template: ComponentStory<typeof Input> = (args) => (
   <div className={`p-4`}>
     <Input {...args} />
   </div>
@@ -89,4 +150,4 @@ Search.args = {
   id: '1',
   type: 'search',
   placeholder: 'Search',
-}
+}*/
