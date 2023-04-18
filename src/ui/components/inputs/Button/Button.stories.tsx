@@ -1,9 +1,9 @@
 import { BeakerIcon } from '@heroicons/react/24/solid'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from './Button'
 
-export default {
+const button: Meta<typeof Button> = {
   title: 'Components/Inputs/Button',
   component: Button,
   argTypes: {
@@ -18,8 +18,9 @@ export default {
       name: 'variant',
       description: 'Select the variant type',
       control: {
-        type: 'radio',
+        type: 'select',
       },
+      options: ['primary', 'secondary', 'tertiary', 'breadcrumb'],
     },
     size: {
       name: 'size',
@@ -37,17 +38,13 @@ export default {
     disabled: {
       name: 'disabled',
       description: 'If the button is disabled',
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
       defaultValue: false,
     },
     submitting: {
       name: 'submitting',
       description: 'Display a loading icon',
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
       defaultValue: false,
     },
     href: {
@@ -82,40 +79,57 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>
-
-const Template: ComponentStory<typeof Button> = (args) => (
-  <div className='p-4'>
-    <Button {...args} />
-  </div>
-)
-
-export const Primary = Template.bind({})
-
-Primary.args = {
-  children: 'Button CTA',
-  variant: 'primary',
 }
 
-export const Secondary = Template.bind({})
+export default button
+type Story = StoryObj<typeof Button>
 
-Secondary.args = {
-  children: 'Button CTA',
-  variant: 'secondary',
+const BaseButton: Story = {
+  render: (args) => (
+    <div className='p-4'>
+      <Button {...args} />
+    </div>
+  ),
 }
 
-export const Tertiary = Template.bind({})
-
-Tertiary.args = {
-  children: 'Button CTA',
-  variant: 'tertiary',
+export const Primary: Story = {
+  ...BaseButton,
+  args: {
+    children: 'Button CTA',
+    variant: 'primary',
+    disabled: false,
+    submitting: false,
+  },
 }
 
-export const WithIcon = Template.bind({})
+export const Secondary: Story = {
+  ...BaseButton,
+  args: {
+    children: 'Button CTA',
+    variant: 'secondary',
+    disabled: false,
+    submitting: false,
+  },
+}
 
-WithIcon.args = {
-  children: 'Button CTA',
-  variant: 'primary',
-  icon: <BeakerIcon className='h-4 w-4' />,
-  iconPosition: 'right',
+export const Tertiary: Story = {
+  ...BaseButton,
+  args: {
+    children: 'Button CTA',
+    variant: 'tertiary',
+    disabled: false,
+    submitting: false,
+  },
+}
+
+export const WithIcon: Story = {
+  ...BaseButton,
+  args: {
+    children: 'Button CTA',
+    variant: 'primary',
+    disabled: false,
+    submitting: false,
+    icon: <BeakerIcon className='h-4 w-4' />,
+    iconPosition: 'left',
+  },
 }

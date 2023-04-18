@@ -1,8 +1,8 @@
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Typography from './Typography'
 
-export default {
+const typography: Meta<typeof Typography> = {
   title: 'Typography/Text',
   component: Typography,
   argTypes: {
@@ -42,19 +42,31 @@ export default {
       options: ['xs', 'sm', 'md', 'lg', 'base'],
       defaultValue: 'base',
     },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    heading: {
+      table: {
+        disable: true,
+      },
+    },
   },
-} as ComponentMeta<typeof Typography>
+}
 
-const Template: ComponentStory<typeof Typography> = (args) => (
-  <div className='p-4'>
-    <Typography {...args} />
-  </div>
-)
+export default typography
+type Story = StoryObj<typeof Typography>
 
-export const Paragraph = Template.bind({})
-
-Paragraph.args = {
-  as: 'p',
-  children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce congue magna felis, non interdum sapien lacinia blandit. Morbi dui augue, auctor id est nec, cursus viverra ipsum. In ut ex iaculis.`,
-  size: 'md',
+export const Primary: Story = {
+  args: {
+    as: 'p',
+    children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce congue magna felis, non interdum sapien lacinia blandit. Morbi dui augue, auctor id est nec, cursus viverra ipsum. In ut ex iaculis.`,
+    size: 'md',
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Typography {...args} />
+    </div>
+  ),
 }

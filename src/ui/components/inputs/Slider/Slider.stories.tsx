@@ -1,9 +1,9 @@
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
 import Slider from './Slider'
 
-export default {
+const slider: Meta<typeof Slider> = {
   title: 'Components/Inputs/Slider',
   component: Slider,
   argTypes: {
@@ -52,19 +52,24 @@ export default {
       defaultValue: false,
     },
   },
-} as ComponentMeta<typeof Slider>
+}
 
-const Template: ComponentStory<typeof Slider> = (args) => (
-  <div className='w-[220px] p-4'>
-    <Slider {...args} />
-  </div>
-)
+export default slider
+type Story = StoryObj<typeof Slider>
 
-export const Primary = Template.bind({})
-
-Primary.args = {
-  maxValue: 100,
-  minValue: 0,
-  defaultValue: [0, 100],
-  label: 'Filter by price',
+export const Primary: Story = {
+  args: {
+    maxValue: 100,
+    minValue: 0,
+    defaultValue: [0, 100],
+    label: 'Filter by price',
+    disabled: false,
+    showInputControls: false,
+    step: 1,
+  },
+  render: (args) => (
+    <div className='w-[220px] p-4'>
+      <Slider {...args} />
+    </div>
+  ),
 }

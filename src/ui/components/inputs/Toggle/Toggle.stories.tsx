@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Toggle from './Toggle'
 
-export default {
+const toggle: Meta<typeof Toggle> = {
   title: 'Components/Inputs/Toggle',
   component: Toggle,
   argTypes: {
@@ -12,6 +12,7 @@ export default {
       control: {
         type: 'radio',
       },
+      options: ['lg', 'md'],
     },
     disabled: {
       name: 'disabled',
@@ -21,23 +22,25 @@ export default {
       },
       defaultValue: false,
     },
+    onChange: {
+      table: {
+        disable: true,
+      },
+    },
   },
-} as ComponentMeta<typeof Toggle>
-
-const Template: ComponentStory<typeof Toggle> = (args) => (
-  <div className='p-4'>
-    <Toggle {...args} />
-  </div>
-)
-
-export const Md = Template.bind({})
-
-Md.args = {
-  size: 'md',
 }
 
-export const Lg = Template.bind({})
+export default toggle
+type Story = StoryObj<typeof Toggle>
 
-Lg.args = {
-  size: 'md',
+export const Primary: Story = {
+  args: {
+    size: 'md',
+    disabled: false,
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Toggle {...args} />
+    </div>
+  ),
 }

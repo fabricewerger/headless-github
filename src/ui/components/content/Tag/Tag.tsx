@@ -3,7 +3,7 @@ import type { ReactElement, ReactNode } from 'react'
 interface TagProps {
   children: ReactNode
   size?: 'lg' | 'md' | 'sm'
-  variant?: 'red' | 'blue' | 'yellow' | 'icon' | 'amount' | 'disabled'
+  variant?: 'error' | 'info' | 'attention' | 'icon'
   icon?: ReactElement
   iconPosition?: 'left' | 'right'
   className?: string
@@ -21,23 +21,17 @@ const tagFamilyClasses: ITagFamilyClasses = {
     md: 'text-base font-bold px-2 py-1',
   },
   variant: {
-    red: {
+    error: {
       base: 'bg-error-500 text-surface-white',
     },
-    blue: {
+    info: {
       base: 'bg-info-500 text-surface-white',
     },
-    yellow: {
+    attention: {
       base: 'bg-attention text-surface-black border border-1 border-attention',
     },
     icon: {
       base: 'font-bold bg-surface-100 text-surface-black border border-surface-200 ',
-    },
-    amount: {
-      base: 'bg-surface-100 text-surface-600 border border-surface-200 ',
-    },
-    disabled: {
-      base: 'bg-surface-50 text-surface-200 border border-surface-100 ',
     },
   },
   iconPosition: {
@@ -49,7 +43,7 @@ const tagFamilyClasses: ITagFamilyClasses = {
 const Tag = ({
   children,
   size = 'lg',
-  variant = 'red',
+  variant = 'error',
   icon,
   iconPosition = 'left',
   className,

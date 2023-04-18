@@ -1,8 +1,8 @@
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Avatar from './Avatar'
 
-export default {
+const avatar: Meta<typeof Avatar> = {
   title: 'Components/Content/Avatar',
   component: Avatar,
   argTypes: {
@@ -31,27 +31,32 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Avatar>
-
-const Template: ComponentStory<typeof Avatar> = (args) => (
-  <div className='p-4'>
-    <Avatar {...args} />
-  </div>
-)
-
-export const withImage = Template.bind({})
-
-withImage.args = {
-  size: 'md',
-  variant: 'primary',
-  imageURL:
-    'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
-  userName: 'Salvador Dali',
 }
 
-export const anonymous = Template.bind({})
+export default avatar
+type Story = StoryObj<typeof Avatar>
 
-anonymous.args = {
-  size: 'md',
-  variant: 'neutral',
+export const Primary: Story = {
+  args: {},
+  render: () => (
+    <div className='p-4'>
+      <Avatar />
+    </div>
+  ),
+}
+
+export const WithImage: Story = {
+  ...Primary,
+  args: {
+    size: 'md',
+    variant: 'primary',
+    imageURL:
+      'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
+    userName: 'Salvador Dali',
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Avatar {...args} />
+    </div>
+  ),
 }

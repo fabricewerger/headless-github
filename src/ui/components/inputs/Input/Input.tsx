@@ -10,7 +10,7 @@ import {
   type ReactElement,
 } from 'react'
 
-import FormInput from '@/ui/components/inputs/FormControl'
+import FormControl from '@/ui/components/inputs/FormControl'
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   id: string
@@ -98,7 +98,7 @@ const Input = ({
   }
 
   return (
-    <FormInput
+    <FormControl
       id={id}
       required={required}
       label={label}
@@ -137,7 +137,7 @@ const Input = ({
           </span>
         )}
       </div>
-    </FormInput>
+    </FormControl>
   )
 }
 

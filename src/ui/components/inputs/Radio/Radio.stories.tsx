@@ -1,21 +1,35 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Radio from './Radio'
 
-export default {
+const radio: Meta<typeof Radio> = {
   title: 'Components/Inputs/Radio',
   component: Radio,
-  argTypes: {},
-} as ComponentMeta<typeof Radio>
+  argTypes: {
+    onChange: {
+      table: {
+        disable: true,
+      },
+    },
+    checked: {
+      name: 'checked',
+      description: 'Set if checked',
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+}
 
-const Template: ComponentStory<typeof Radio> = (args) => {
-  return (
+export default radio
+type Story = StoryObj<typeof Radio>
+
+export const Primary: Story = {
+  args: {
+    checked: false,
+  },
+  render: (args) => (
     <div className='p-4'>
       <Radio {...args} />
     </div>
-  )
+  ),
 }
-
-export const Primary = Template.bind({})
-
-Primary.args = {}

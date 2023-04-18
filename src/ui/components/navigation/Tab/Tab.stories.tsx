@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Tab from './Tab'
 
-export default {
+const tab: Meta<typeof Tab> = {
   title: 'Components/Navigation/Tab',
   component: Tab,
   argTypes: {
@@ -25,16 +25,18 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Tab>
+}
 
-const Template: ComponentStory<typeof Tab> = (args) => (
-  <div className='p-4'>
-    <Tab {...args} />
-  </div>
-)
+export default tab
+type Story = StoryObj<typeof Tab>
 
-export const Primary = Template.bind({})
-
-Primary.args = {
-  children: 'Tab Option 1',
+export const Primary: Story = {
+  args: {
+    isActive: true,
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Tab {...args} />
+    </div>
+  ),
 }

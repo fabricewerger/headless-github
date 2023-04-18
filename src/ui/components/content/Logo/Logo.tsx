@@ -5,7 +5,7 @@ import YouweLogo from '../../../../../public/youwe-logo.svg'
 type SVGComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 interface LogoProps {
-  size?: 'xl' | 'lg' | 'md' | 'sm'
+  size?: 'md'
   variant: 'standard'
   alt?: string
 }

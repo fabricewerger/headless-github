@@ -1,10 +1,10 @@
 import { EyeIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Pill from './Pill'
 
-export default {
-  title: 'Components/Pill',
+const pill: Meta<typeof Pill> = {
+  title: 'Components/Content/Pill',
   component: Pill,
   argTypes: {
     children: {
@@ -16,7 +16,7 @@ export default {
     },
     variant: {
       name: 'variant',
-      description: 'Select the variant type',
+      description: 'Set the pill variant',
       control: {
         type: 'radio',
       },
@@ -26,32 +26,35 @@ export default {
         disable: true,
       },
     },
-    type: {
+    onClick: {
       table: {
         disable: true,
       },
     },
   },
-} as ComponentMeta<typeof Pill>
-
-const Template: ComponentStory<typeof Pill> = (args) => (
-  <div className='p-4'>
-    <Pill {...args} />
-  </div>
-)
-
-export const Primary = Template.bind({})
-
-Primary.args = {
-  children: 'Default',
-  variant: 'primary',
-  icon: <EyeIcon className='h-4 w-4' />,
 }
 
-export const Secondary = Template.bind({})
+export default pill
+type Story = StoryObj<typeof Pill>
 
-Secondary.args = {
-  children: 'Default',
-  variant: 'secondary',
-  icon: <InformationCircleIcon />,
+export const Primary: Story = {
+  args: {
+    children: 'Default',
+    variant: 'primary',
+    icon: <EyeIcon className='h-4 w-4' />,
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Pill {...args} />
+    </div>
+  ),
+}
+
+export const Secondary: Story = {
+  ...Primary,
+  args: {
+    children: 'Default',
+    variant: 'secondary',
+    icon: <InformationCircleIcon className='h-4 w-4' />,
+  },
 }
