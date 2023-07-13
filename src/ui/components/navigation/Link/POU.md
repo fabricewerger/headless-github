@@ -55,7 +55,6 @@ Link needs to be reached with the TAB button and be activated with ENTER.
 ### Research
 
 https://www.w3.org/TR/WCAG21/#abstract
-https://atlassian.design/components/avatar/usage
 
 ## Notes
 
