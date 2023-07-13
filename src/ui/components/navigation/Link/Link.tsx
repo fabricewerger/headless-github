@@ -17,7 +17,14 @@ const StyledLink = ({
     // External link
     if (target) {
       return (
-        <a href={href} target={target} rel='nofollow' {...props}>
+        <a
+          className='focus:text-primary text-surface-600 focus:text-surface-900 hover:text-surface-900 hover:underline transition'
+          href={href}
+          target={target}
+          rel='nofollow'
+          aria-roledescription='link'
+          {...props}
+        >
           {children}
         </a>
       )
@@ -25,7 +32,12 @@ const StyledLink = ({
 
     //Internal link
     return (
-      <Link href={href} {...props}>
+      <Link
+        className='focus:text-primary text-surface-600 focus:text-surface-900 hover:text-surface-900 hover:underline transition'
+        href={href}
+        aria-roledescription='link'
+        {...props}
+      >
         {children}
       </Link>
     )
