@@ -27,11 +27,11 @@ Loading spinners are used when retrieving data or performing slow computations, 
 
 ### Behaviour
 
-The primary accessibility consideration for the loading component is to convey its meaning to assistive technologies so users are aware of changes in status. Carbon achieves this by exposing the title value (normally “loading”) of the spinning wheel SVG image.
+The primary accessibility consideration for the loading component is to convey its meaning to assistive technologies so users are aware of changes in status.
 
 ### Keyboard interactions
 
-The loading component has no keyboard accessibility considerations since it is intentionally not operable or navigable. However, Carbon incorporates other accessibility considerations, some of which are described below.
+The loading component has no keyboard accessibility considerations since it is intentionally not operable or navigable.
 
 ### Research
 
@@ -45,4 +45,4 @@ Add `aria-hidden='true'` display something but hide it from being read
 
 ### [11 july 2023]
 
-Added .md file, aria-hidden applied.
+Added .md file, aria-hidden on `<span>` applied.
