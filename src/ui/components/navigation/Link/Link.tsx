@@ -1,59 +1,20 @@
-import Link from 'next/link'
-import { type ComponentPropsWithoutRef } from 'react'
+import NextLink, { type LinkProps as INextLink } from 'next/link'
 
-interface LinkProps extends ComponentPropsWithoutRef<'a'> {
-  disabled?: boolean
+interface LinkProps extends INextLink {
+  children: string
 }
 
-const StyledLink = ({
-  disabled,
-  href,
-  target,
-  children,
-  onClick,
-  ...props
-}: LinkProps) => {
-  if (href && !disabled) {
-    // External link
-    if (target) {
-      return (
-        <a
-          className='focus:text-primary text-surface-600 focus:text-surface-900 hover:text-surface-900 hover:underline transition'
-          href={href}
-          target={target}
-          rel='nofollow'
-          aria-roledescription='link'
-          {...props}
-        >
-          {children}
-        </a>
-      )
-    }
-
-    //Internal link
-    return (
-      <Link
-        className='focus:text-primary text-surface-600 focus:text-surface-900 hover:text-surface-900 hover:underline transition'
-        href={href}
-        aria-roledescription='link'
-        {...props}
-      >
-        {children}
-      </Link>
-    )
-  }
-
-  if (onClick && !disabled)
-    return (
-      <span
-        {...(onClick && { onClick: onClick, className: 'cursor-pointer' })}
-        {...props}
-      >
-        {children}
-      </span>
-    )
-
-  return <>{children}</>
+const Link = ({ href, children, ...props }: LinkProps) => {
+  return (
+    <NextLink
+      href={href}
+      {...props}
+      className='group relative inline-block text-surface hover:no-underline focus:text-surface-300 hover:text-surface-300 transition-color active:text-primary-500'
+    >
+      {children}
+      <span className='w-0 h-[1px] bg-surface-200 block group-hover:w-full  transition-all absolute bottom-0 translate-y-[2px] duration-300 group-active:bg-primary-500' />
+    </NextLink>
+  )
 }
 
-export default StyledLink
+export default Link

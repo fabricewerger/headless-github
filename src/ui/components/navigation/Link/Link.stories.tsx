@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Link from './Link'
 
 const link: Meta<typeof Link> = {
-  title: 'Components/Navigation/Conditional Link',
+  title: 'Components/Navigation/Link',
   component: Link,
   argTypes: {
     children: {
@@ -18,19 +18,6 @@ const link: Meta<typeof Link> = {
         disable: true,
       },
     },
-    target: {
-      table: {
-        disable: true,
-      },
-    },
-    disabled: {
-      name: 'disabled',
-      description: 'If the Link is disabled',
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
-    },
     onClick: {
       table: {
         disable: true,
@@ -44,10 +31,8 @@ type Story = StoryObj<typeof Link>
 
 export const Primary: Story = {
   args: {
-    children: <>This is a Link</>,
     href: 'https://youtube.com',
-    target: '_blank',
-    disabled: false,
+    children: 'This is a link',
   },
   render: (args) => (
     <div className='p-4'>
