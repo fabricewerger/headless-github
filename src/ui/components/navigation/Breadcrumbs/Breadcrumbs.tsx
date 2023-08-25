@@ -1,57 +1,77 @@
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
+'use client'
 
-import Button from '@/ui/components/inputs/Button/'
-import Link from '@/ui/components/navigation/Link/'
-import Typography from '@/ui/components/content/Typography'
+import Link, { type LinkProps } from 'next/link'
+import { usePathname } from 'next/navigation'
+import type { ReactNode } from 'react'
 
-export interface ILink {
-  id: string
-  label: string
-  href: string
+import { ChevronRightIcon, HomeIcon } from '@/icons/index'
+import Typography from '../../content/Typography/Typography'
+
+const Breadcrumbs = ({ children }: BreadcrumbsProps) => {
+  const childrenAsArray = Array.isArray(children)
+    ? children.filter(Boolean)
+    : [children].filter(Boolean)
+
+  return (
+    <nav aria-label='breadcrumbs'>
+      <ol className='inline flex gap-xs leading-[100%] items-center'>
+        <Typography as='li' size='sm' className='flex items-center gap-xs'>
+          <Link href='/'>
+            <HomeIcon className='w-4 h-4' />
+          </Link>
+          <span aria-hidden='true'>
+            <ChevronRightIcon className='w-3 h-3' />
+          </span>
+        </Typography>
+        {childrenAsArray.map((breadcrumb, index) => (
+          <Typography
+            as='li'
+            size='sm'
+            key={index}
+            className='flex items-center gap-xs'
+          >
+            {breadcrumb}
+            {index + 1 < childrenAsArray.length && (
+              <span aria-hidden='true'>
+                <ChevronRightIcon className='w-3 h-3' />
+              </span>
+            )}
+          </Typography>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+const BreadcrumbsItem = ({
+  children,
+  href,
+  ...props
+}: BreadcrumbsItemProps) => {
+  const pathname = usePathname()
+
+  return (
+    <Link
+      href={href}
+      {...(pathname === href && {
+        'aria-current': 'location',
+      })}
+      {...props}
+      className='aria-[current=location]:text-surface-500'
+    >
+      {children}
+    </Link>
+  )
 }
 
 interface BreadcrumbsProps {
-  breadcrumbs: Array<ILink>
-  currentUrl?: string
+  children: ReactNode
 }
 
-const Breadcrumbs = ({ breadcrumbs, currentUrl }: BreadcrumbsProps) => {
-  /* Get second from last breadcrumb as parent category */
-  const [parentCategory] = breadcrumbs.slice(-2)
-
-  return (
-    <div className='flex items-center gap-md'>
-      <Button />
-      <nav
-        className='inline hidden leading-[100%] text-surface-black md:block [&_a:hover]:underline'
-        aria-label='breadcrumbs'
-      >
-        <ol>
-          <Typography as='li' size='xs' className='inline'>
-            <Link href='/'>Home</Link>
-          </Typography>
-          {breadcrumbs?.map(({ id, label, href }) => (
-            <Typography as='li' size='xs' className='inline-block' key={id}>
-              <span
-                className='mx-sm inline-block text-surface-300'
-                aria-hidden='true'
-              >
-                <ChevronRightIcon className='inline h-3 w-3' />
-              </span>
-              <Link
-                href={href}
-                {...(currentUrl === href && {
-                  'aria-current': 'location',
-                })}
-              >
-                {label}
-              </Link>
-            </Typography>
-          ))}
-        </ol>
-      </nav>
-    </div>
-  )
+interface BreadcrumbsItemProps extends LinkProps {
+  children: ReactNode
 }
+
+Breadcrumbs.Item = BreadcrumbsItem
 
 export default Breadcrumbs
