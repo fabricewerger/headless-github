@@ -8,9 +8,9 @@
   },
   "scripts": {
     "generate:tokens": "node ./src/lib/utils/transformTokens.js",
-    "generate:schema": "graphql-code-generator --config codegen.ts",
+    "generate:schema": "graphql-code-generator --config codegen.ts --watch",
     "storybook": "storybook dev -p 6006 -s ./public",
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"yarn generate:schema\"",
     "pre-commit": "lint-staged",
     "build": "next build",
     "start": "next start",
@@ -41,7 +41,6 @@
     "@graphql-codegen/client-preset": "^2.1.1",
     "@graphql-codegen/typescript": "^3.0.2",
     "@graphql-codegen/typescript-operations": "^3.0.2",
-    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@storybook/addon-actions": "^7.0.4",
     "@storybook/addon-controls": "^7.0.4",
     "@storybook/addon-essentials": "^7.0.4",
@@ -57,8 +56,12 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "^10.4.14",
+<<<<<<< HEAD
     "commitlint-config-jira": "^1.6.4",
     "commitlint-plugin-jira-rules": "^1.6.4",
+=======
+    "concurrently": "^8.2.0",
+>>>>>>> 3c3ca2d0c4b6afb605a4f72dbeb7f2075e454546
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "eslint-plugin-storybook": "^0.6.11",
