@@ -26,7 +26,11 @@ const icon: Meta<typeof Icon> = {
       },
     },
     href: {
+      description: 'Define icon link',
       defaultValue: '/',
+      control: {
+        type: 'text',
+      },
     },
   },
 }
