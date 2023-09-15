@@ -33,7 +33,7 @@ export const Tab = ({ children, isSelected, id }: TabProps) => {
       {...(setTab && { onClick: () => setTab(id) })}
     >
       <div
-        className={`bg-primary-200 px-sm py-sm mb-sm pr-xl pb-[6px] bg-opacity-0 group-hover:bg-opacity-50 transition duration-500 ${
+        className={`bg-primary-200 px-sm py-sm mb-sm pb-[6px] bg-opacity-0 group-hover:bg-opacity-50 transition duration-500 ${
           tab === id ? 'bg-opacity-100' : ''
         }`}
       >
@@ -41,7 +41,7 @@ export const Tab = ({ children, isSelected, id }: TabProps) => {
       </div>
       <div
         className={`absolute bottom-0 h-[3px] w-[0%] bg-surface-black transition-all left-1/2 -translate-x-1/2 duration-[400ms] ${
-          tab === id ? 'w-[50%]' : ''
+          tab === id ? 'w-[100%]' : ''
         }`}
       ></div>
     </div>

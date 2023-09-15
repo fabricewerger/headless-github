@@ -1,20 +1,47 @@
-import NextLink, { type LinkProps as INextLink } from 'next/link'
+import NextLink from 'next/link'
+import { type ComponentPropsWithoutRef } from 'react'
 
-interface LinkProps extends INextLink {
-  children: string
+interface LinkProps extends ComponentPropsWithoutRef<'a'> {
+  disabled?: boolean
 }
 
-const Link = ({ href, children, ...props }: LinkProps) => {
-  return (
-    <NextLink
-      href={href}
-      {...props}
-      className='group relative inline-block text-surface hover:no-underline focus:text-surface-300 hover:text-surface-300 transition-color active:text-primary-500'
-    >
-      {children}
-      <span className='w-0 h-[1px] bg-surface-200 block group-hover:w-full  transition-all absolute bottom-0 translate-y-[2px] duration-300 group-active:bg-primary-500' />
-    </NextLink>
-  )
+const Link = ({
+  disabled,
+  href,
+  target,
+  children,
+  onClick,
+  ...props
+}: LinkProps) => {
+  if (href && !disabled) {
+    // External link
+    if (target) {
+      return (
+        <a href={href} target={target} rel='nofollow' {...props}>
+          {children}
+        </a>
+      )
+    }
+
+    //Internal link
+    return (
+      <NextLink href={href} {...props}>
+        {children}
+      </NextLink>
+    )
+  }
+
+  if (onClick && !disabled)
+    return (
+      <span
+        {...(onClick && { onClick: onClick, className: 'cursor-pointer' })}
+        {...props}
+      >
+        {children}
+      </span>
+    )
+
+  return <>{children}</>
 }
 
 export default Link
