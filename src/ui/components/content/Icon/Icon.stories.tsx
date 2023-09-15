@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { StarIcon } from '@heroicons/react/24/outline'
 
 import Icon from './Icon'
+import { AddIcon, MinusIcon } from '@/icons/index'
 
 const icon: Meta<typeof Icon> = {
   title: 'Components/Content/Icon',
@@ -13,11 +13,23 @@ const icon: Meta<typeof Icon> = {
       control: {
         type: 'radio',
       },
-      options: ['lg', 'md', 'sm'],
+      options: ['lg', 'md'],
     },
     children: {
       table: {
         disable: true,
+      },
+    },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    href: {
+      description: 'Define icon link',
+      defaultValue: '/',
+      control: {
+        type: 'text',
       },
     },
   },
@@ -26,8 +38,21 @@ const icon: Meta<typeof Icon> = {
 export default icon
 type Story = StoryObj<typeof Icon>
 
-export const Primary: Story = {
-  args: { size: 'md', children: <StarIcon /> },
+export const PlusIcon: Story = {
+  args: { size: 'md', children: <AddIcon className={'h-3 w-3'} />, href: '/' },
+  render: (args) => (
+    <div className='p-4'>
+      <Icon {...args} />
+    </div>
+  ),
+}
+
+export const MinIcon: Story = {
+  args: {
+    size: 'md',
+    children: <MinusIcon className={'h-3 w-3'} />,
+    href: '/',
+  },
   render: (args) => (
     <div className='p-4'>
       <Icon {...args} />
