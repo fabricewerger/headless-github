@@ -29,6 +29,16 @@ Generate schema: `yarn generate:schema`
 Launch Storybook: `yarn storybook`
 Start developing: `yarn dev`
 
+## Development
+
+### Git Commit Hooks
+
+There are two commit hooks:
+
+- Git commit message, by `commitlint` with JIRA-rules, see [https://github.com/Gherciu/commitlint-jira] for more information
+- Lint staged files with `lint-staged`, which runs `TSC` (TypeScript Compiler) to check if everything compiles.
+  `eslint` to check the javascript/typescript files code quality. And `prettier` to format the files that are being comitted.
+
 ## Figma
 
 The Figma file linked to this project is [Youwe Design System](https://xxx)
@@ -83,3 +93,4 @@ In order to keep this application fast, adaptable, and easy to work with, it's c
 
 - **Nathan Clare** [<n.clare@youweagency.com>]
 - **Fabrice Werger** [<f.werger@youweagency.com>]
+- **Jasper Zeinsta** [<j.zeinstra@youweagency.com>]
