@@ -13,18 +13,12 @@ const {
   FontParagraphsTextSmRegular: TextSm,
   FontParagraphsTextMdBaseRegular: TextMd,
   FontParagraphsTextLgRegular: TextLg,
-  FontDesktopHeadingsHeadingXs: HeadingXs,
-  FontDesktopHeadingsHeadingSm: HeadingSm,
-  FontDesktopHeadingsHeadingMd: HeadingMd,
-  FontDesktopHeadingsHeadingLg: HeadingLg,
-  FontDesktopHeadingsHeadingXl: HeadingXl,
-  FontDesktopHeadingsHeading2xl: Heading2xl,
-  FontMobileHeadingsHeadingXs: MobileHeadingXs,
-  FontMobileHeadingsHeadingSm: MobileHeadingSm,
-  FontMobileHeadingsHeadingMd: MobileHeadingMd,
-  FontMobileHeadingsHeadingLg: MobileHeadingLg,
-  FontMobileHeadingsHeadingXl: MobileHeadingXl,
-  FontMobileHeadingsHeading2xl: MobileHeading2xl,
+  FontHeadingsHeadingXs: HeadingXs,
+  FontHeadingsHeadingSm: HeadingSm,
+  FontHeadingsHeadingMd: HeadingMd,
+  FontHeadingsHeadingLg: HeadingLg,
+  FontHeadingsHeadingXl: HeadingXl,
+  FontHeadingsHeading2xl: Heading2xl,
 } = tokens
 
 module.exports = {
@@ -170,74 +164,7 @@ module.exports = {
         },
       ],
     },
-    mobileHeadingSize: {
-      xs: [
-        convertToRem(MobileHeadingXs.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeadingXs.lineHeight),
-          letterSpacing: convertToRem(MobileHeadingXs.letterSpacing),
-          fontWeight: MobileHeadingXs.fontWeight,
-          fontStyle: MobileHeadingXs.fontStyle,
-          fontStretch: MobileHeadingXs.fontStretch,
-          textTransform: MobileHeadingXs.textCase,
-        },
-      ],
-      sm: [
-        convertToRem(MobileHeadingSm.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeadingSm.lineHeight),
-          letterSpacing: convertToRem(MobileHeadingSm.letterSpacing),
-          fontWeight: MobileHeadingSm.fontWeight,
-          fontStyle: MobileHeadingSm.fontStyle,
-          fontStretch: MobileHeadingSm.fontStretch,
-          textTransform: MobileHeadingSm.textCase,
-        },
-      ],
-      md: [
-        convertToRem(MobileHeadingMd.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeadingMd.lineHeight),
-          letterSpacing: convertToRem(MobileHeadingMd.letterSpacing),
-          fontWeight: MobileHeadingMd.fontWeight,
-          fontStyle: MobileHeadingMd.fontStyle,
-          fontStretch: MobileHeadingMd.fontStretch,
-          textTransform: MobileHeadingMd.textCase,
-        },
-      ],
-      lg: [
-        convertToRem(MobileHeadingLg.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeadingLg.lineHeight),
-          letterSpacing: convertToRem(MobileHeadingLg.letterSpacing),
-          fontWeight: MobileHeadingLg.fontWeight,
-          fontStyle: MobileHeadingLg.fontStyle,
-          fontStretch: MobileHeadingLg.fontStretch,
-          textTransform: MobileHeadingLg.textCase,
-        },
-      ],
-      xl: [
-        convertToRem(MobileHeadingXl.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeadingXl.lineHeight),
-          letterSpacing: convertToRem(MobileHeadingXl.letterSpacing),
-          fontWeight: MobileHeadingXl.fontWeight,
-          fontStyle: MobileHeadingXl.fontStyle,
-          fontStretch: MobileHeadingXl.fontStretch,
-          textTransform: MobileHeadingXl.textCase,
-        },
-      ],
-      '2xl': [
-        convertToRem(MobileHeading2xl.fontSize),
-        {
-          lineHeight: convertToRem(MobileHeading2xl.lineHeight),
-          letterSpacing: convertToRem(MobileHeading2xl.letterSpacing),
-          fontWeight: MobileHeading2xl.fontWeight,
-          fontStyle: MobileHeading2xl.fontStyle,
-          fontStretch: MobileHeading2xl.fontStretch,
-          textTransform: MobileHeading2xl.textCase,
-        },
-      ],
-    },
+
     screens: {
       sm: `${tokens.BreakpointsSm}px`,
       md: `${tokens.BreakpointsMd}px`,
@@ -246,20 +173,33 @@ module.exports = {
     },
     colors: {
       primary: {
-        DEFAULT: tokens.ColorPrimaryOrange500Base,
-        base: tokens.ColorPrimaryOrange500Base,
-        900: tokens.ColorPrimaryOrange900,
-        700: tokens.ColorPrimaryOrange700,
-        600: tokens.ColorPrimaryOrange600,
-        500: tokens.ColorPrimaryOrange500Base,
-        400: tokens.ColorPrimaryOrange400,
-        150: tokens.ColorPrimaryOrange150,
-        100: tokens.ColorPrimaryOrange100,
-        50: tokens.ColorPrimaryOrange50,
-        25: tokens.ColorPrimaryOrange25,
+        DEFAULT: tokens.ColorPrimaryPrimary500Base,
+        base: tokens.ColorPrimaryPrimary500Base,
+        900: tokens.ColorPrimaryPrimary900,
+        700: tokens.ColorPrimaryPrimary700,
+        600: tokens.ColorPrimaryPrimary600,
+        500: tokens.ColorPrimaryPrimary500Base,
+        400: tokens.ColorPrimaryPrimary400,
+        150: tokens.ColorPrimaryPrimary150,
+        100: tokens.ColorPrimaryPrimary100,
+        50: tokens.ColorPrimaryPrimary50,
+        25: tokens.ColorPrimaryPrimary25,
+      },
+      secondary: {
+        DEFAULT: tokens.ColorSecondarySecondary500Base,
+        base: tokens.ColorSecondarySecondary500Base,
+        900: tokens.ColorSecondarySecondary900,
+        700: tokens.ColorSecondarySecondary700,
+        600: tokens.ColorSecondarySecondary600,
+        500: tokens.ColorSecondarySecondary500Base,
+        400: tokens.ColorSecondarySecondary400,
+        150: tokens.ColorSecondarySecondary150,
+        100: tokens.ColorSecondarySecondary100,
+        50: tokens.ColorSecondarySecondary50,
+        25: tokens.ColorSecondarySecondary25,
       },
       surface: {
-        black: tokens.ColorSurfaceTextBlack,
+        black: tokens.ColorSurfaceBlack,
         900: tokens.ColorSurfaceGrey900,
         800: tokens.ColorSurfaceGrey800,
         700: tokens.ColorSurfaceGrey700,
@@ -274,6 +214,7 @@ module.exports = {
         white: tokens.ColorSurfaceWhite,
       },
       success: {
+        700: tokens.ColorSystemSuccess700,
         500: tokens.ColorSystemSuccess500,
         50: tokens.ColorSystemSuccess50,
       },
@@ -288,12 +229,10 @@ module.exports = {
       info: {
         500: tokens.ColorSystemInfo500,
         50: tokens.ColorSystemInfo50,
+        25: tokens.ColorSystemInfo25,
       },
       attention: {
         DEFAULT: tokens.ColorSystemAttention500,
-      },
-      sale: {
-        DEFAULT: tokens.ColorSystemSale500,
       },
       black: '#000000',
       white: '#FFFFFF',
@@ -302,7 +241,7 @@ module.exports = {
       spacing: {
         xs: convertToRem(tokens.SizesXs),
         sm: convertToRem(tokens.SizesSm),
-        'sm-alt': convertToRem(tokens.SizesSmAlt),
+        12: convertToRem(tokens.SizesSmAlt),
         md: convertToRem(tokens.SizesMd),
         'md-alt': convertToRem(tokens.SizesMdAlt),
         lg: convertToRem(tokens.SizesLg),
@@ -410,22 +349,6 @@ module.exports = {
           }),
         },
         { values: theme('headingSize') }
-      )
-
-      matchUtilities(
-        {
-          'heading-mobile': (value) => ({
-            lineHeight: value[1].lineHeight,
-            letterSpacing: value[1].letterSpacing,
-            fontWeight: value[1].fontWeight,
-            fontFamily: `'Inter', sans-serif`,
-            fontStyle: value[1].fontStyle,
-            fontStretch: value[1].fontStretch,
-            textTransform: value[1].textTransform,
-            fontSize: value[0],
-          }),
-        },
-        { values: theme('mobileHeadingSize') }
       )
 
       const newAnimationDelayUtility = {
