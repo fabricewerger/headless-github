@@ -1,17 +1,16 @@
 const StyleDictionary = require('style-dictionary')
 const baseConfig = require('../../../sd.config.json')
 
+const remTokens = ['lineHeights', 'fontSizes', 'spacing']
+
 StyleDictionary.registerTransform({
-  name: 'size/px',
+  name: 'size/pxToRem',
   type: 'value',
   matcher: (token) => {
-    return (
-      (token.unit === 'pixel' || token.type === 'dimension') &&
-      token.value !== 0
-    )
+    return remTokens.includes(token.type) && token.value !== 0
   },
   transformer: (token) => {
-    return `${token.value}px`
+    return `${token.value.replace('px', '') / 16}rem`
   },
 })
 
@@ -29,7 +28,7 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransformGroup({
   name: 'custom/css',
   transforms: StyleDictionary.transformGroup['css'].concat([
-    'size/px',
+    'size/pxToRem',
     'size/percent',
   ]),
 })
@@ -37,7 +36,15 @@ StyleDictionary.registerTransformGroup({
 StyleDictionary.registerTransformGroup({
   name: 'custom/scss',
   transforms: StyleDictionary.transformGroup['less'].concat([
-    'size/px',
+    'size/pxToRem',
+    'size/percent',
+  ]),
+})
+
+StyleDictionary.registerTransformGroup({
+  name: 'custom/json',
+  transforms: StyleDictionary.transformGroup['js'].concat([
+    'size/pxToRem',
     'size/percent',
   ]),
 })
