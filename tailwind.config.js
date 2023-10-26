@@ -3,11 +3,6 @@
 const plugin = require('tailwindcss/plugin')
 const tokens = require('./src/styles/_generated/json/styles.json')
 
-/* TODO: Move to seperate file? */
-const convertToRem = (value) => {
-  return `${value / 16}rem`
-}
-
 const {
   FontParagraphsTextXsRegular: TextXs,
   FontParagraphsTextSmRegular: TextSm,
@@ -36,10 +31,10 @@ module.exports = {
     },
     fontSize: {
       xs: [
-        convertToRem(TextXs.fontSize),
+        TextXs.fontSize,
         {
-          lineHeight: convertToRem(TextXs.lineHeight),
-          letterSpacing: convertToRem(TextXs.letterSpacing),
+          lineHeight: TextXs.lineHeight,
+          letterSpacing: TextXs.letterSpacing,
           fontWeight: TextXs.fontWeight,
           fontFamily: TextXs.fontFamily,
           fontStyle: TextXs.fontStyle,
@@ -48,10 +43,10 @@ module.exports = {
         },
       ],
       sm: [
-        convertToRem(TextSm.fontSize),
+        TextSm.fontSize,
         {
-          lineHeight: convertToRem(TextSm.lineHeight),
-          letterSpacing: convertToRem(TextSm.letterSpacing),
+          lineHeight: TextSm.lineHeight,
+          letterSpacing: TextSm.letterSpacing,
           fontWeight: TextSm.fontWeight,
           fontFamily: TextSm.fontFamily,
           fontStyle: TextSm.fontStyle,
@@ -60,10 +55,10 @@ module.exports = {
         },
       ],
       md: [
-        convertToRem(TextMd.fontSize),
+        TextMd.fontSize,
         {
-          lineHeight: convertToRem(TextMd.lineHeight),
-          letterSpacing: convertToRem(TextMd.letterSpacing),
+          lineHeight: TextMd.lineHeight,
+          letterSpacing: TextMd.letterSpacing,
           fontWeight: TextMd.fontWeight,
           fontFamily: TextMd.fontFamily,
           fontStyle: TextMd.fontStyle,
@@ -72,10 +67,10 @@ module.exports = {
         },
       ],
       base: [
-        convertToRem(TextMd.fontSize),
+        TextMd.fontSize,
         {
-          lineHeight: convertToRem(TextMd.lineHeight),
-          letterSpacing: convertToRem(TextMd.letterSpacing),
+          lineHeight: TextMd.lineHeight,
+          letterSpacing: TextMd.letterSpacing,
           fontWeight: TextMd.fontWeight,
           fontFamily: TextMd.fontFamily,
           fontStyle: TextMd.fontStyle,
@@ -84,10 +79,10 @@ module.exports = {
         },
       ],
       lg: [
-        convertToRem(TextLg.fontSize),
+        TextLg.fontSize,
         {
-          lineHeight: convertToRem(TextLg.lineHeight),
-          letterSpacing: convertToRem(TextLg.letterSpacing),
+          lineHeight: TextLg.lineHeight,
+          letterSpacing: TextLg.letterSpacing,
           fontWeight: TextLg.fontWeight,
           fontFamily: TextLg.fontFamily,
           fontStyle: TextLg.fontStyle,
@@ -98,10 +93,10 @@ module.exports = {
     },
     headingSize: {
       xs: [
-        convertToRem(HeadingXs.fontSize),
+        HeadingXs.fontSize,
         {
-          lineHeight: convertToRem(HeadingXs.lineHeight),
-          letterSpacing: convertToRem(HeadingXs.letterSpacing),
+          lineHeight: HeadingXs.lineHeight,
+          letterSpacing: HeadingXs.letterSpacing,
           fontWeight: HeadingXs.fontWeight,
           fontStyle: HeadingXs.fontStyle,
           fontStretch: HeadingXs.fontStretch,
@@ -109,10 +104,10 @@ module.exports = {
         },
       ],
       sm: [
-        convertToRem(HeadingSm.fontSize),
+        HeadingSm.fontSize,
         {
-          lineHeight: convertToRem(HeadingSm.lineHeight),
-          letterSpacing: convertToRem(HeadingSm.letterSpacing),
+          lineHeight: HeadingSm.lineHeight,
+          letterSpacing: HeadingSm.letterSpacing,
           fontWeight: HeadingSm.fontWeight,
           fontStyle: HeadingSm.fontStyle,
           fontStretch: HeadingSm.fontStretch,
@@ -120,10 +115,10 @@ module.exports = {
         },
       ],
       md: [
-        convertToRem(HeadingMd.fontSize),
+        HeadingMd.fontSize,
         {
-          lineHeight: convertToRem(HeadingMd.lineHeight),
-          letterSpacing: convertToRem(HeadingMd.letterSpacing),
+          lineHeight: HeadingMd.lineHeight,
+          letterSpacing: HeadingMd.letterSpacing,
           fontWeight: HeadingMd.fontWeight,
           fontStyle: HeadingMd.fontStyle,
           fontStretch: HeadingMd.fontStretch,
@@ -131,10 +126,10 @@ module.exports = {
         },
       ],
       lg: [
-        convertToRem(HeadingLg.fontSize),
+        HeadingLg.fontSize,
         {
-          lineHeight: convertToRem(HeadingLg.lineHeight),
-          letterSpacing: convertToRem(HeadingLg.letterSpacing),
+          lineHeight: HeadingLg.lineHeight,
+          letterSpacing: HeadingLg.letterSpacing,
           fontWeight: HeadingLg.fontWeight,
           fontStyle: HeadingLg.fontStyle,
           fontStretch: HeadingLg.fontStretch,
@@ -142,10 +137,10 @@ module.exports = {
         },
       ],
       xl: [
-        convertToRem(HeadingXl.fontSize),
+        HeadingXl.fontSize,
         {
-          lineHeight: convertToRem(HeadingXl.lineHeight),
-          letterSpacing: convertToRem(HeadingXl.letterSpacing),
+          lineHeight: HeadingXl.lineHeight,
+          letterSpacing: HeadingXl.letterSpacing,
           fontWeight: HeadingXl.fontWeight,
           fontStyle: HeadingXl.fontStyle,
           fontStretch: HeadingXl.fontStretch,
@@ -153,10 +148,10 @@ module.exports = {
         },
       ],
       '2xl': [
-        convertToRem(Heading2xl.fontSize),
+        Heading2xl.fontSize,
         {
-          lineHeight: convertToRem(Heading2xl.lineHeight),
-          letterSpacing: convertToRem(Heading2xl.letterSpacing),
+          lineHeight: Heading2xl.lineHeight,
+          letterSpacing: Heading2xl.letterSpacing,
           fontWeight: Heading2xl.fontWeight,
           fontStyle: Heading2xl.fontStyle,
           fontStretch: Heading2xl.fontStretch,
@@ -164,7 +159,6 @@ module.exports = {
         },
       ],
     },
-
     screens: {
       sm: `${tokens.BreakpointsSm}px`,
       md: `${tokens.BreakpointsMd}px`,
@@ -239,16 +233,14 @@ module.exports = {
     },
     extend: {
       spacing: {
-        xs: convertToRem(tokens.SizesXs),
-        sm: convertToRem(tokens.SizesSm),
-        12: convertToRem(tokens.SizesSmAlt),
-        md: convertToRem(tokens.SizesMd),
-        'md-alt': convertToRem(tokens.SizesMdAlt),
-        lg: convertToRem(tokens.SizesLg),
-        xl: convertToRem(tokens.SizesXl),
-        '2xl': convertToRem(tokens.Sizes2xl),
-        '3xl': convertToRem(tokens.Sizes3xl),
-        '4xl': convertToRem(tokens.Sizes4xl),
+        xs: tokens.SizesXs,
+        sm: tokens.SizesSm,
+        md: tokens.SizesMd,
+        lg: tokens.SizesLg,
+        xl: tokens.SizesXl,
+        '2xl': tokens.Sizes2xl,
+        '3xl': tokens.Sizes3xl,
+        '4xl': tokens.Sizes4xl,
       },
       transitionProperty: {
         colors:
