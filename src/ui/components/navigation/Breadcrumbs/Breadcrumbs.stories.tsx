@@ -1,26 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react'
-
+import type { Meta, Story } from '@storybook/react'
 import Breadcrumbs from './Breadcrumbs'
 
-const breadCrumbs: Meta<typeof Breadcrumbs> = {
+const breadcrumbsMeta: Meta = {
   title: 'Components/Navigation/Breadcrumbs',
   component: Breadcrumbs,
   argTypes: {
-    breadcrumbs: {
-      table: {
-        disable: true,
-      },
-    },
-    currentUrl: {
-      table: {
-        disable: true,
+    children: {
+      control: {
+        type: null,
       },
     },
   },
 }
 
-export default breadCrumbs
-type Story = StoryObj<typeof Breadcrumbs>
+export default breadcrumbsMeta
 
 const breadcrumbs = [
   {
@@ -35,14 +28,18 @@ const breadcrumbs = [
   },
 ]
 
-export const Primary: Story = {
-  args: {
-    breadcrumbs: breadcrumbs,
-    currentUrl: '/',
-  },
-  render: (args) => (
-    <div className='p-4'>
-      <Breadcrumbs {...args} />
-    </div>
-  ),
+export const Default: Story = (args) => (
+  <div className='p-4'>
+    <Breadcrumbs {...args}>
+      <Breadcrumbs.Item href='/pdp'>PDP</Breadcrumbs.Item>
+    </Breadcrumbs>
+  </div>
+)
+
+Default.args = {
+  children: breadcrumbs.map((item) => (
+    <Breadcrumbs.Item key={item.id} href={item.href}>
+      {item.label}
+    </Breadcrumbs.Item>
+  )),
 }

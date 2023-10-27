@@ -1,11 +1,11 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { type ComponentPropsWithoutRef } from 'react'
 
 interface LinkProps extends ComponentPropsWithoutRef<'a'> {
   disabled?: boolean
 }
 
-const StyledLink = ({
+const Link = ({
   disabled,
   href,
   target,
@@ -25,9 +25,9 @@ const StyledLink = ({
 
     //Internal link
     return (
-      <Link href={href} {...props}>
+      <NextLink href={href} {...props}>
         {children}
-      </Link>
+      </NextLink>
     )
   }
 
@@ -44,4 +44,4 @@ const StyledLink = ({
   return <>{children}</>
 }
 
-export default StyledLink
+export default Link
