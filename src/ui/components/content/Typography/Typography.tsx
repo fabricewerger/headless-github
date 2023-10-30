@@ -3,7 +3,7 @@ import { type ElementType, type ReactNode } from 'react'
 type TypographyProps<C extends ElementType> = {
   children: ReactNode
   as?: C
-  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'base'
+  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'base'
   className?: string
   heading?: boolean
 } & React.ComponentPropsWithoutRef<C>
@@ -15,13 +15,14 @@ interface ITypographyFamilyClasses {
 const typographyFamilyClasses: ITypographyFamilyClasses = {
   variant: {
     heading: {
-      xs: 'heading-mobile-xs md:heading-xs',
-      sm: 'heading-mobile-sm md:heading-sm',
-      base: 'heading-mobile-md md:heading-md',
-      md: 'heading-mobile-md md:heading-md',
-      lg: 'heading-mobile-lg md:heading-lg',
-      xl: 'heading-mobile-xl md:heading-xl',
-      '2xl': 'heading-mobile-2xl md:heading-2xl',
+      xs: 'heading-xs',
+      sm: 'heading-sm',
+      base: 'heading-md',
+      md: 'heading-md',
+      lg: 'heading-lg',
+      xl: 'heading-xl',
+      '2xl': 'heading-2xl',
+      '3xl': 'heading-3xl',
     },
     text: {
       xs: 'text-xs',
@@ -32,8 +33,6 @@ const typographyFamilyClasses: ITypographyFamilyClasses = {
       xl: 'text-xl',
       '2xl': 'text-2xl',
       '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
     },
   },
 }
