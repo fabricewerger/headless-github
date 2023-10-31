@@ -6,7 +6,7 @@ import Loading from '@/ui/components/utility/Loading'
 import Typography from '@/ui/components/content/Typography'
 
 interface ButtonProps extends ComponentPropsWithRef<'button'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'breadcrumb'
+  variant?: 'primary' | 'secondary' | 'surface' | 'breadcrumb'
   disabled?: boolean
   submitting?: boolean
   href?: string
@@ -35,7 +35,7 @@ const buttonFamilyClasses: IButtonFamilyClasses = {
       disabled: 'text-surface-400 before:border-surface-200',
       loadingIcon: 'primary',
     },
-    tertiary: {
+    surface: {
       base: 'bg-surface-white text-surface-black before:border-2 before:border-surface-black before:hover:border-4 before:hover:border-surface-black before:focus:border-4 before:focus:border-info-500',
       disabled: 'text-surface-400 before:border-surface-200',
       loadingIcon: 'neutral',
@@ -53,7 +53,7 @@ const buttonFamilyClasses: IButtonFamilyClasses = {
   loadingIcon: {
     primary: 'white',
     secondary: 'primary',
-    tertiary: 'neutral',
+    surface: 'neutral',
   },
   size: {
     xs: 'text-xs py-xs',
@@ -130,7 +130,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               children ? 'px-sm' : 'px-0'
             }`}
           >
-            {icon && <span>{icon}</span>}
+            {icon && icon}
             {children && (
               <Typography className='font-bold' size={'lg'}>
                 {children}

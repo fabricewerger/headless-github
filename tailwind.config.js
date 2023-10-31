@@ -2,6 +2,7 @@
 
 const plugin = require('tailwindcss/plugin')
 const tokens = require('./src/styles/_generated/json/styles.json')
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
 
 const {
   ParagraphsTextXsRegular: TextXs,
@@ -373,6 +374,26 @@ module.exports = {
         },
       }
       addUtilities(newAnimationDelayUtility)
+
+      /**
+       * Dynamic utility classes to modify SVG coloring by state.
+       *
+       * E.g. "svg-disabled-surface-300" where "disabled" is the state and "surface-300" the color.
+       */
+      const states = ['default', 'disabled', 'active', 'hover']
+      states.forEach((state) => {
+        matchUtilities(
+          {
+            [`svg-${state}`]: (value) => ({
+              [`&${state !== 'default' ? ':' + state : ''}>span>svg>path`]: {
+                fill: value,
+                stroke: value,
+              },
+            }),
+          },
+          { values: flattenColorPalette.default(theme('colors')) }
+        )
+      })
     }),
   ],
 }
