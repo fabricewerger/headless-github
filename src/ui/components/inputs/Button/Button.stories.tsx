@@ -20,7 +20,7 @@ const button: Meta<typeof Button> = {
       control: {
         type: 'select',
       },
-      options: ['primary', 'secondary', 'tertiary', 'breadcrumb'],
+      options: ['primary', 'secondary', 'surface', 'breadcrumb'],
     },
     size: {
       name: 'size',
@@ -112,11 +112,11 @@ export const Secondary: Story = {
   },
 }
 
-export const Tertiary: Story = {
+export const Surface: Story = {
   ...BaseButton,
   args: {
     children: 'Button CTA',
-    variant: 'tertiary',
+    variant: 'surface',
     disabled: false,
     submitting: false,
   },
@@ -131,5 +131,6 @@ export const WithIcon: Story = {
     submitting: false,
     icon: <BeakerIcon className='h-4 w-4' />,
     iconPosition: 'left',
+    className: 'svg-hover-secondary-500',
   },
 }
