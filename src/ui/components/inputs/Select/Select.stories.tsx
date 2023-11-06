@@ -15,7 +15,63 @@ const select: Meta<typeof Select> = {
       },
       defaultValue: false,
     },
+    error: {
+      name: 'error',
+      description: 'If the Select is has an error',
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
+    success: {
+      name: 'success',
+      description: 'If the Select is valid',
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
     onValueChange: {
+      table: {
+        disable: true,
+      },
+    },
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+    label: {
+      table: {
+        disable: true,
+      },
+    },
+    hint: {
+      table: {
+        disable: true,
+      },
+    },
+    placeholder: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+    triggerText: {
+      table: {
+        disable: true,
+      },
+    },
+    value: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
       table: {
         disable: true,
       },
@@ -29,6 +85,8 @@ type Story = StoryObj<typeof Select>
 export const Primary: Story = {
   args: {
     disabled: false,
+    error: false,
+    success: false,
   },
   decorators: [
     (Story, Context) => {

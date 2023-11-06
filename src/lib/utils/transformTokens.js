@@ -1,7 +1,8 @@
 const StyleDictionary = require('style-dictionary')
 const baseConfig = require('../../../sd.config.json')
+const tinycolor = require('tinycolor2')
 
-const remTokens = ['lineHeights', 'fontSizes', 'spacing']
+const remTokens = ['lineHeights', 'fontSizes', 'spacing', 'borderRadius']
 
 StyleDictionary.registerTransform({
   name: 'size/pxToRem',
@@ -22,6 +23,44 @@ StyleDictionary.registerTransform({
   },
   transformer: (token) => {
     return `${token.value}%`
+  },
+})
+
+StyleDictionary.registerTransform({
+  name: 'size/toPx',
+  type: 'value',
+  matcher: (token) => {
+    return token.type === 'borderWidth'
+  },
+  transformer: (token) => {
+    return `${token.value}px`
+  },
+})
+
+StyleDictionary.registerTransform({
+  name: 'color/toRGB',
+  type: 'value',
+  matcher: (token) => {
+    return token.type === 'color' && token.attributes.category !== 'gradients'
+  },
+  transformer: (token) => {
+    return tinycolor(token.value).toRgbString()
+  },
+})
+
+StyleDictionary.registerTransform({
+  name: 'effect/dropShdaow',
+  type: 'value',
+  matcher: (token) => {
+    return token.attributes.category === 'shadow'
+  },
+  transformer: (token) => {
+    const { blur, color, x, y, spread } = token.original.value
+    const isInnerShadow = token.attributes.type === 'inset' ? 'inset' : ''
+
+    return `${isInnerShadow} ${x}px ${y}px ${blur}px ${spread}px ${tinycolor(
+      color
+    ).toRgbString()}`
   },
 })
 
@@ -57,13 +96,28 @@ StyleDictionary.registerTransform({
   },
 })
 
+StyleDictionary.registerTransform({
+  name: 'name/color',
+  type: 'name',
+  matcher: (token) => {
+    return token.type === 'color'
+  },
+  transformer: (token) => {
+    return `Color${token.name}`
+  },
+})
+
 StyleDictionary.registerTransformGroup({
   name: 'custom/css',
   transforms: StyleDictionary.transformGroup['css'].concat([
     'size/pxToRem',
+    'size/toPx',
     'size/percent',
     'font/weight',
     'font/letterSpacing',
+    'effect/dropShdaow',
+    'name/color',
+    'color/toRGB',
   ]),
 })
 
@@ -71,9 +125,13 @@ StyleDictionary.registerTransformGroup({
   name: 'custom/scss',
   transforms: StyleDictionary.transformGroup['less'].concat([
     'size/pxToRem',
+    'size/toPx',
     'size/percent',
     'font/weight',
     'font/letterSpacing',
+    'effect/dropShdaow',
+    'name/color',
+    'color/toRGB',
   ]),
 })
 
@@ -81,9 +139,13 @@ StyleDictionary.registerTransformGroup({
   name: 'custom/json',
   transforms: StyleDictionary.transformGroup['js'].concat([
     'size/pxToRem',
+    'size/toPx',
     'size/percent',
     'font/weight',
     'font/letterSpacing',
+    'effect/dropShdaow',
+    'name/color',
+    'color/toRGB',
   ]),
 })
 

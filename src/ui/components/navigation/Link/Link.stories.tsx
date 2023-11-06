@@ -23,6 +23,16 @@ const link: Meta<typeof Link> = {
         disable: true,
       },
     },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    disabled: {
+      table: {
+        disable: true,
+      },
+    },
   },
 }
 

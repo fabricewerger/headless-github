@@ -12,13 +12,15 @@ const avatar: Meta<typeof Avatar> = {
       control: {
         type: 'radio',
       },
+      options: ['lg', 'md', 'sm'],
     },
     variant: {
       name: 'variant',
       description: 'Select the variant type',
       control: {
-        type: 'radio',
+        type: 'select',
       },
+      options: ['primary', 'surface'],
     },
     imageURL: {
       table: {
@@ -37,10 +39,9 @@ export default avatar
 type Story = StoryObj<typeof Avatar>
 
 export const Primary: Story = {
-  args: {},
-  render: () => (
+  render: (args) => (
     <div className='p-4'>
-      <Avatar />
+      <Avatar {...args} />
     </div>
   ),
 }

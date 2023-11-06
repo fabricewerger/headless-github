@@ -14,7 +14,7 @@ const TruncatedText = ({ maxLength, children }: TruncatedTextProps) => {
       <>
         {truncate ? `${children.slice(0, maxLength)}...` : children}
         <span
-          className='mt-sm flex cursor-pointer items-center text-primary underline underline-offset-2'
+          className='mt-xs flex cursor-pointer items-center text-primary underline underline-offset-2'
           onClick={() => setTruncate(!truncate)}
         >
           {truncate ? 'Show more' : 'Show less'}

@@ -5,19 +5,31 @@ interface LinkProps extends ComponentPropsWithoutRef<'a'> {
   disabled?: boolean
 }
 
+const linkDefaultClassNames =
+  'cursor-pointer hover:decoration-solid hover:underline hover:underline-offset-4 decoration-surface-500/30'
+
 const Link = ({
   disabled,
   href,
   target,
   children,
   onClick,
+  className: classNameProp = '',
   ...props
 }: LinkProps) => {
+  const linkClassName = `${linkDefaultClassNames} ${classNameProp}`
+
   if (href && !disabled) {
     // External link
     if (target) {
       return (
-        <a href={href} target={target} rel='nofollow' {...props}>
+        <a
+          href={href}
+          target={target}
+          rel='nofollow'
+          className={linkClassName}
+          {...props}
+        >
           {children}
         </a>
       )
@@ -25,7 +37,7 @@ const Link = ({
 
     //Internal link
     return (
-      <NextLink href={href} {...props}>
+      <NextLink href={href} className={linkClassName} {...props}>
         {children}
       </NextLink>
     )
@@ -34,14 +46,15 @@ const Link = ({
   if (onClick && !disabled)
     return (
       <span
-        {...(onClick && { onClick: onClick, className: 'cursor-pointer' })}
+        {...(onClick && { onClick: onClick })}
+        className={linkClassName}
         {...props}
       >
         {children}
       </span>
     )
 
-  return <>{children}</>
+  return <span className={linkClassName}>{children}</span>
 }
 
 export default Link

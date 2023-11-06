@@ -1,6 +1,6 @@
 interface LoadingProps {
   size: 'sm' | 'md' | 'lg'
-  variant: 'primary' | 'neutral' | 'white'
+  variant: 'primary' | 'surface' | 'neutral'
 }
 
 interface ILoadingFamilyClasses {
@@ -15,9 +15,9 @@ const loadingFamilyClasses: ILoadingFamilyClasses = {
     lg: '[&>span]:w-sm [&>span]:h-sm',
   },
   variant: {
-    primary: '[&>span]:bg-primary-400',
-    neutral: '[&>span]:bg-surface-800',
-    white: '[&>span]:bg-surface-white',
+    primary: '[&>span]:bg-primary',
+    surface: '[&>span]:bg-surface-500',
+    neutral: '[&>span]:bg-surface-white',
   },
 }
 

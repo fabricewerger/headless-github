@@ -20,15 +20,15 @@ const textAreaFamilyClasses: ITextAreaFamilyClasses = {
     },
     error: {
       input:
-        'bg-white border-error-500 outline outline-4 outline-error-50 placeholder:text-surface-500',
+        'bg-white border-error-500 outline outline-xs outline-error-50 placeholder:text-surface-500',
     },
     success: {
       input:
-        'bg-white border-success-500 outline outline-4 outline-success-50 placeholder:text-surface-500',
+        'bg-white border-success-500 outline outline-xs outline-success-50 placeholder:text-surface-500',
     },
     default: {
       input:
-        'bg-white border-surface-200 focus:outline focus:outline-4 focus:outline-info-50 focus:border-info-500 text-surface-black placeholder:text-surface-500',
+        'bg-white border-surface-200 focus:outline focus:outline-xs focus:outline-info-50 focus:border-info-500 text-surface-black placeholder:text-surface-500',
     },
   },
 }
@@ -57,7 +57,7 @@ const TextArea = ({
   return (
     <div className='relative'>
       <textarea
-        className={`background-white z-1 relative block w-full rounded-sm border border-2 p-sm text-md transition-colors ${
+        className={`background-white z-1 relative block w-full rounded-sm border border-xs p-sm text-md transition-colors ${
           textAreaFamilyClasses['state'][getState()]['input']
         }`}
         id={id}

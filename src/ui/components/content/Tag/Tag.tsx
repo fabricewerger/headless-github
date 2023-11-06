@@ -2,8 +2,8 @@ import type { ReactElement, ReactNode } from 'react'
 
 interface TagProps {
   children: ReactNode
-  size?: 'lg' | 'md' | 'sm'
-  variant?: 'error' | 'info' | 'attention' | 'icon'
+  size?: 'md' | 'sm'
+  variant?: 'error' | 'info' | 'attention' | 'surface'
   icon?: ReactElement
   iconPosition?: 'left' | 'right'
   className?: string
@@ -17,8 +17,8 @@ interface ITagFamilyClasses {
 
 const tagFamilyClasses: ITagFamilyClasses = {
   size: {
-    sm: 'text-xs px-xs py-0.5',
-    md: 'text-base font-bold px-2 py-1',
+    sm: 'text-xs px-sm py-xs',
+    md: 'text-base font-bold px-md py-xs',
   },
   variant: {
     error: {
@@ -30,8 +30,8 @@ const tagFamilyClasses: ITagFamilyClasses = {
     attention: {
       base: 'bg-attention text-surface-black border border-1 border-attention',
     },
-    icon: {
-      base: 'font-bold bg-surface-100 text-surface-black border border-surface-200 ',
+    surface: {
+      base: 'font-bold bg-surface-50 text-surface-black border border-surface-200 ',
     },
   },
   iconPosition: {
@@ -42,7 +42,7 @@ const tagFamilyClasses: ITagFamilyClasses = {
 
 const Tag = ({
   children,
-  size = 'lg',
+  size = 'md',
   variant = 'error',
   icon,
   iconPosition = 'left',
@@ -51,7 +51,7 @@ const Tag = ({
   return (
     <div className={className}>
       <div
-        className={`relative inline-flex items-center justify-center rounded-[2px] transition-colors ${tagFamilyClasses['size'][size]} ${tagFamilyClasses['variant'][variant]['base']}`}
+        className={`relative inline-flex items-center justify-center rounded-sm transition-colors ${tagFamilyClasses['size'][size]} ${tagFamilyClasses['variant'][variant]['base']}`}
       >
         <span
           className={`inline-flex items-center justify-center gap-xs ${tagFamilyClasses['iconPosition'][iconPosition]}`}

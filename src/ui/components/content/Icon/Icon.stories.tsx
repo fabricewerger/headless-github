@@ -13,7 +13,15 @@ const icon: Meta<typeof Icon> = {
       control: {
         type: 'radio',
       },
-      options: ['lg', 'md'],
+      options: ['lg', 'md', 'sm'],
+    },
+    variant: {
+      name: 'variant',
+      description: 'Set the variant',
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'surface'],
     },
     children: {
       table: {
@@ -41,7 +49,7 @@ type Story = StoryObj<typeof Icon>
 export const PlusIcon: Story = {
   args: { size: 'md', children: <AddIcon className={'h-3 w-3'} />, href: '/' },
   render: (args) => (
-    <div className='p-4'>
+    <div className='p-4 bg-surface-50'>
       <Icon {...args} />
     </div>
   ),
@@ -54,7 +62,7 @@ export const MinIcon: Story = {
     href: '/',
   },
   render: (args) => (
-    <div className='p-4'>
+    <div className='p-4 bg-surface-50'>
       <Icon {...args} />
     </div>
   ),

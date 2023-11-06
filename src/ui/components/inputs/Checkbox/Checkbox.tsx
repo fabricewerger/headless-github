@@ -4,16 +4,11 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 
 export interface CheckboxComponentProps
   extends Omit<CheckboxProps, 'onChange'> {
-  id: string
   checked?: boolean | 'indeterminate'
   disabled?: boolean
   error?: boolean
   size?: 'lg' | 'md'
   className?: string
-  value: string
-  name: string
-  swatch?: string
-  overrideClasses?: boolean
   // eslint-disable-next-line no-unused-vars
   onChange?: (checked: boolean) => void
 }
@@ -25,35 +20,28 @@ interface ICheckboxFamilyClasses {
 
 const checkboxFamilyClasses: ICheckboxFamilyClasses = {
   state: {
-    swatch: '!hover:outline-[0px]',
-    disabled: 'bg-surface-100 border-surface-200',
+    disabled: 'bg-surface-50 border-surface-100 text-surface-200',
     error:
-      'bg-surface-white border-error-500 data-[state="unchecked"]:hover:outline data-[state="unchecked"]:hover:bg-error-500 data-[state="unchecked"]:hover:outline-surface-white data-[state="checked"]:bg-error-500 data-[state="checked"]:border-error-500',
+      'bg-surface-white border-error-500 outline text-surface-white outline-error-500/20 data-[state="checked"]:bg-error-500 data-[state="checked"]:border-error-500',
     active:
-      'bg-surface-white border-surface-200 hover:outline hover:bg-primary-500 hover:bg-opacity-50 hover:outline-surface-white data-[state="checked"]:bg-primary data-[state="checked"]:border-primary data-[state="checked"]:outline-none',
+      'bg-surface-white border-surface-100 text-surface-white hover:outline hover:outline-xs hover:outline-surface-50 data-[state="checked"]:border-primary-300 data-[state="checked"]:text-primary-500',
   },
   size: {
-    lg: 'h-lg w-lg hover:outline-[5px] outline-offset-[-7px] [&_svg]:w-5 [&_svg]:h-5',
-    md: 'h-[18px] w-[18px] hover:outline-[3px] outline-offset-[-5px] [&_svg]:w-3 [&_svg]:h-3',
+    lg: 'h-lg w-lg hover:outline-xs [&_svg]:w-5 [&_svg]:h-5',
+    md: 'h-md w-md hover:outline-xs [&_svg]:w-3 [&_svg]:h-3',
   },
 }
 
 const Checkbox = ({
-  id,
   checked = false,
   disabled,
   error = false,
   size = 'md',
-  className,
-  name,
-  value,
-  overrideClasses = false,
+  className = '',
   onChange,
   ...props
 }: CheckboxComponentProps) => {
   const getState = () => {
-    if (overrideClasses) return 'swatch'
-
     if (disabled) return 'disabled'
 
     if (error) return 'error'
@@ -64,17 +52,13 @@ const Checkbox = ({
   return (
     <div className={`inline-flex items-center`}>
       <RadixCheckbox.Root
-        className={`flex items-center rounded border-2 text-surface-white transition-colors ${
+        {...props}
+        className={`flex justify-center rounded-xs items-center border border-xs transition-colors ${
           checkboxFamilyClasses['size'][size]
-        } ${checkboxFamilyClasses['state'][getState()]}  ${className || ''}`}
-        defaultChecked={checked}
-        id={id}
-        name={name}
-        value={value}
+        } ${checkboxFamilyClasses['state'][getState()]} ${className}`}
         disabled={disabled}
         checked={checked}
         onCheckedChange={onChange}
-        {...props}
       >
         <RadixCheckbox.Indicator>
           <CheckIcon />

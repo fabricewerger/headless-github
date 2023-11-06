@@ -1,7 +1,7 @@
 import * as RadixSlider from '@radix-ui/react-slider'
 import { useState } from 'react'
 
-import Input from '../Input/Input'
+import Input from '@/ui/components/inputs/Input'
 
 interface SliderProps {
   defaultValue: Array<number>
@@ -45,14 +45,14 @@ const Slider = ({
         onValueChange={(values) => handleSliderChange(values)}
         minStepsBetweenThumbs={1}
       >
-        <RadixSlider.Track className='relative grow rounded-full bg-surface-200 data-[orientation=horizontal]:h-xs data-[orientation=vertical]:w-xs'>
+        <RadixSlider.Track className='relative grow rounded-full bg-surface-100 data-[orientation=horizontal]:h-xs data-[orientation=vertical]:w-xs'>
           <RadixSlider.Range className='absolute h-full rounded-full bg-primary opacity-25' />
         </RadixSlider.Track>
         <RadixSlider.Thumb className={thumbStyles()} />
         <RadixSlider.Thumb className={thumbStyles()} />
       </RadixSlider.Root>
       {showInputControls && (
-        <div className='mt-sm-alt flex items-center justify-between [&_input]:rounded-[4px] [&_input]:py-1.5'>
+        <div className='mt-sm flex items-center justify-between [&_input]:rounded-sm [&_input]:py-xs'>
           <div className='w-[45%]'>
             <Input
               type='number'
@@ -89,6 +89,6 @@ const Slider = ({
 }
 
 const thumbStyles = () =>
-  `before:content-[" "] relative block h-md w-md rounded-full bg-primary-400 before:absolute before:left-1/2 before:top-1/2 before:h-lg before:w-lg before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary before:opacity-10 hover:cursor-grab focus:shadow-xl hover:scale-110 transition-all focus:outline-none active:cursor-grabbing`
+  `before:content-[" "] relative block h-md w-md rounded-full bg-primary before:absolute before:left-1/2 before:top-1/2 before:h-lg before:w-lg before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary before:opacity-10 hover:cursor-grab focus:shadow-xl hover:scale-110 transition-all focus:outline-none active:cursor-grabbing`
 
 export default Slider

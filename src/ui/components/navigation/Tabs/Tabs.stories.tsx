@@ -22,7 +22,9 @@ export const Primary: Story = {
   args: {
     children: (
       <>
-        <Tab id={1}>Tab 1</Tab>
+        <Tab id={1} isSelected>
+          Tab 1
+        </Tab>
         <Tab id={2}>Tab 2</Tab>
         <Tab id={3}>Tab 3</Tab>
       </>
