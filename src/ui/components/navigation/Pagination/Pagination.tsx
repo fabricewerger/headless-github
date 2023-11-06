@@ -54,14 +54,14 @@ const Pagination = ({
         </Link>
       </span>
       <ul className='flex flex-wrap [&_span]:block [&_span]:flex [&_span]:h-8 [&_span]:w-8 [&_span]:items-center [&_span]:justify-center leading-[2rem]'>
-        {pageNumbers.map((pageNumber) =>
+        {pageNumbers.map((pageNumber, index) =>
           pageNumber === '...' ? (
-            <li key={pageNumber} className='h-8 w-8 text-center'>
+            <li key={index} className='h-8 w-8 text-center'>
               {pageNumber}
             </li>
           ) : (
             <li
-              key={pageNumber}
+              key={index}
               className={`cursor-pointer transition-colors hover:bg-primary hover:underline hover:text-surface-white underline-offset-2 ${
                 pageNumber === currentPage
                   ? 'bg-primary text-surface-white'
