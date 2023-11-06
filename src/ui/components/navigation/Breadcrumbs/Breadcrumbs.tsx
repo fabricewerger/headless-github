@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 import { ChevronRightIcon, HomeIcon } from '@/icons/index'
-import Typography from '../../content/Typography/Typography'
+import Typography from '@/ui/components/content/Typography'
 
 const Breadcrumbs = ({ children }: BreadcrumbsProps) => {
   const childrenAsArray = Array.isArray(children)
@@ -19,7 +19,7 @@ const Breadcrumbs = ({ children }: BreadcrumbsProps) => {
           <Link href='/'>
             <HomeIcon className='w-4 h-4' />
           </Link>
-          <span aria-hidden='true'>
+          <span aria-hidden='true' className='text-surface-200'>
             <ChevronRightIcon className='w-3 h-3' />
           </span>
         </Typography>
@@ -32,7 +32,7 @@ const Breadcrumbs = ({ children }: BreadcrumbsProps) => {
           >
             {breadcrumb}
             {index + 1 < childrenAsArray.length && (
-              <span aria-hidden='true'>
+              <span aria-hidden='true' className='text-surface-200'>
                 <ChevronRightIcon className='w-3 h-3' />
               </span>
             )}
@@ -57,7 +57,7 @@ const BreadcrumbsItem = ({
         'aria-current': 'location',
       })}
       {...props}
-      className='aria-[current=location]:text-surface-500'
+      className='aria-[current=location]:text-surface hover:underline hover:underline-offset-4'
     >
       {children}
     </Link>

@@ -1,5 +1,5 @@
 import * as RadixAccordion from '@radix-ui/react-accordion'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@/icons/index'
 import { type ReactNode } from 'react'
 
 interface AccordionTitleProps {
@@ -37,12 +37,12 @@ const AccordionTitle = ({ children, id, className }: AccordionTitleProps) => {
     <div className='w-full'>
       <RadixAccordion.Item
         value={id}
-        className='bg-transparent group relative flex w-full items-center justify-between py-sm-alt text-base font-bold text-surface-black data-[state=open]:border-b data-[state=open]:border-surface-100 md:border-b md:border-surface-100'
+        className='bg-transparent group relative flex w-full items-center justify-between py-sm text-base font-bold text-surface-black border-b border-surface-50'
       >
         <span className={className || ''}>{children}</span>
         <RadixAccordion.Trigger>
           <ChevronDownIcon
-            className='inline h-5 w-5 text-surface-black transition group-data-[state=open]:rotate-180'
+            className='inline h-4 w-4 text-surface-black transition group-data-[state=open]:rotate-180'
             aria-hidden
           />
         </RadixAccordion.Trigger>
@@ -55,7 +55,7 @@ const AccordionBody = ({ children, className, id }: AccordionBodyProps) => {
   return (
     <RadixAccordion.Item value={id} className='flex'>
       <RadixAccordion.Content
-        className={`bg-neutral-200 mt-sm-alt w-full overflow-hidden text-base text-surface-black data-[state=open]:animate-radixDown data-[state=closed]:animate-radixUp ${
+        className={`bg-neutral-200 mt-sm w-full overflow-hidden text-base text-surface-black data-[state=open]:animate-radixDown data-[state=closed]:animate-radixUp ${
           className || ''
         }`}
       >

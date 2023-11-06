@@ -1,8 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { useMemo } from 'react'
 
 import generatePageNumbers from '@/lib/utils/pagination'
 import Link from '@/ui/components/navigation/Link/'
+import { ChevronLeftIcon, ChevronRightIcon } from '@/icons/index'
 
 interface PaginationProps {
   totalPages: number
@@ -43,7 +43,7 @@ const Pagination = ({
           currentPage === 1 ? 'text-surface-200' : ''
         }`}
       >
-        <ChevronLeftIcon className='h-5 w-5' />
+        <ChevronLeftIcon className='h-4 w-4 mr-xs' />
         <Link
           {...(currentPage > 1 && {
             onClick: () => handleClick(currentPage - 1),
@@ -53,17 +53,19 @@ const Pagination = ({
           Back
         </Link>
       </span>
-      <ul className='flex flex-wrap [&_span]:block [&_span]:flex [&_span]:h-8 [&_span]:w-8 [&_span]:items-center [&_span]:justify-center'>
+      <ul className='flex flex-wrap [&_span]:block [&_span]:flex [&_span]:h-8 [&_span]:w-8 [&_span]:items-center [&_span]:justify-center leading-[2rem]'>
         {pageNumbers.map((pageNumber, index) =>
           pageNumber === '...' ? (
-            // eslint-disable-next-line react/no-array-index-key
-            <li key={index}>{pageNumber}</li>
+            <li key={index} className='h-8 w-8 text-center'>
+              {pageNumber}
+            </li>
           ) : (
             <li
-              // eslint-disable-next-line react/no-array-index-key
               key={index}
-              className={`cursor-pointer transition-colors hover:bg-surface-100 hover:underline ${
-                pageNumber === currentPage ? 'bg-surface-200' : ''
+              className={`cursor-pointer transition-colors hover:bg-primary hover:underline hover:text-surface-white underline-offset-2 ${
+                pageNumber === currentPage
+                  ? 'bg-primary text-surface-white'
+                  : ''
               }`}
             >
               <Link
@@ -95,7 +97,7 @@ const Pagination = ({
         >
           Next
         </Link>
-        <ChevronRightIcon className='h-5 w-5' />
+        <ChevronRightIcon className='h-4 w-4 ml-xs' />
       </span>
     </nav>
   )

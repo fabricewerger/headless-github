@@ -1,4 +1,4 @@
-import { EyeIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
+import { PriceTagIcon, GlobeIcon } from '@/icons/index'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Pill from './Pill'
@@ -20,6 +20,7 @@ const pill: Meta<typeof Pill> = {
       control: {
         type: 'radio',
       },
+      options: ['primary', 'surface'],
     },
     icon: {
       table: {
@@ -41,7 +42,7 @@ export const Primary: Story = {
   args: {
     children: 'Default',
     variant: 'primary',
-    icon: <EyeIcon className='h-4 w-4' />,
+    icon: <GlobeIcon className='h-3 w-3' />,
   },
   render: (args) => (
     <div className='p-4'>
@@ -50,11 +51,11 @@ export const Primary: Story = {
   ),
 }
 
-export const Secondary: Story = {
+export const Surface: Story = {
   ...Primary,
   args: {
     children: 'Default',
-    variant: 'secondary',
-    icon: <InformationCircleIcon className='h-4 w-4' />,
+    variant: 'surface',
+    icon: <PriceTagIcon className='h-3 w-3' />,
   },
 }

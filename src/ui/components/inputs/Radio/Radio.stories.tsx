@@ -1,3 +1,4 @@
+import { useArgs } from '@storybook/client-api'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Radio from './Radio'
@@ -27,9 +28,21 @@ export const Primary: Story = {
   args: {
     checked: false,
   },
-  render: (args) => (
+  decorators: [
+    (Story, Context) => {
+      const [{ checked }, updateArgs] = useArgs()
+      return Story({ ...Context, updateArgs, checked })
+    },
+  ],
+  render: (args, { updateArgs, checked }) => (
     <div className='p-4'>
-      <Radio {...args} />
+      <Radio
+        {...args}
+        checked={checked}
+        onChange={(checked) => {
+          updateArgs({ checked: checked })
+        }}
+      />
     </div>
   ),
 }

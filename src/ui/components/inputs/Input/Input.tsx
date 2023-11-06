@@ -33,19 +33,19 @@ const inputFamilyClasses: IInputFamilyClasses = {
   state: {
     disabled: {
       input:
-        'bg-surface-200 border-surface-200 text-surface-600 placeholder:text-surface-600',
+        'bg-surface-25 border-surface-100 text-surface-300 placeholder:text-surface-600',
     },
     error: {
       input:
-        'bg-white border-error-500 outline outline-4 outline-error-50 placeholder:text-surface-500',
+        'bg-white border-error-500 outline outline-xs outline-error-50 placeholder:text-surface-500',
     },
     success: {
       input:
-        'bg-white border-success-500 outline outline-4 outline-success-50 placeholder:text-surface-500',
+        'bg-white border-success-500 outline outline-xs outline-success-50 placeholder:text-surface-500',
     },
     default: {
       input:
-        'bg-white border-surface-200 focus:outline focus:outline-4 focus:outline-info-50 focus:border-info-500 text-surface-black placeholder:text-surface-500',
+        'bg-white border-surface-200 focus:outline focus:outline-xs focus:outline-info-50 focus:border-info-500 text-surface-black placeholder:text-surface-500',
     },
   },
   icon: {

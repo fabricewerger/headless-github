@@ -45,7 +45,7 @@ type Story = StoryObj<typeof Pagination>
 export const Primary: Story = {
   args: {
     totalPages: 10,
-    currentPage: 2,
+    currentPage: 1,
   },
   decorators: [
     (Story, Context) => {
@@ -57,7 +57,7 @@ export const Primary: Story = {
     <div className='p-4'>
       <Pagination
         {...args}
-        onChange={(value) => updateArgs(value)}
+        onChange={(pageNumber) => updateArgs({ value: pageNumber })}
         currentPage={value}
       />
     </div>

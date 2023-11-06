@@ -14,13 +14,13 @@ interface IAvatarFamilyClasses {
 
 const iconFamilyClasses: IAvatarFamilyClasses = {
   size: {
-    sm: 'w-8 h-8',
-    md: 'w-11 h-11',
-    lg: 'w-14 h-14',
+    sm: 'w-8 h-8 text-md',
+    md: 'w-11 h-11 text-lg',
+    lg: 'w-14 h-14 text-xl',
   },
   variant: {
-    primary: 'bg-primary-100 text-primary-600',
-    neutral: 'bg-neutral-100 text-neutral-600',
+    primary: 'bg-primary text-surface-white',
+    surface: 'bg-surface-500 text-surface-white',
   },
 }
 
@@ -43,7 +43,7 @@ const Avatar = ({
           />
         )}
         <RadixAvatar.Fallback
-          className={`w-full h-full flex items-center justify-center text-base font-medium ${iconFamilyClasses['variant'][variant]}`}
+          className={`w-full h-full flex items-center justify-center font-medium ${iconFamilyClasses['variant'][variant]}`}
           delayMs={600}
         >
           ?

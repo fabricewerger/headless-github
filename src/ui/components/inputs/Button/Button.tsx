@@ -6,59 +6,71 @@ import Loading from '@/ui/components/utility/Loading'
 import Typography from '@/ui/components/content/Typography'
 
 interface ButtonProps extends ComponentPropsWithRef<'button'> {
-  variant?: 'primary' | 'secondary' | 'surface' | 'breadcrumb'
+  variant?: 'primary' | 'secondary' | 'surface'
   disabled?: boolean
   submitting?: boolean
   href?: string
   target?: '_self' | '_blank'
   icon?: ReactElement
-  iconPosition?: 'left' | 'right'
-  size?: 'xs' | 'sm' | 'lg'
+  iconPosition?: 'trailing' | 'leading'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 interface IButtonFamilyClasses {
   variant: Record<string, Record<string, string>>
   iconPosition: Record<string, string>
-  loadingIcon: Record<string, 'primary' | 'white' | 'neutral'>
-  size: Record<string, string>
+  loadingIcon: Record<string, 'primary' | 'neutral'>
+  size: Record<string, Record<string, string>>
 }
 
 const buttonFamilyClasses: IButtonFamilyClasses = {
   variant: {
     primary: {
-      base: 'bg-primary-base text-surface-white before:border-primary hover:bg-primary-700 before:hover:border-primary-700 before:focus:border-4 before:focus:bg-primary focus:text-surface-white before:focus:border-primary-150',
-      disabled: 'bg-surface-200 text-surface-400 before:border-surface-200',
+      base: 'bg-surface-white text-primary-base border-surface-white hover:border-primary-base hover:bg-primary-base active:bg-primary-700 active:border-primary-700 active:shadow-inner-md-pressed active:text-surface-white focus:text-primary-base focus:border focus:border-info-500 hover:text-surface-white active:text-surface-white',
+      disabled: 'text-surface-300 bg-surface-100 border-surface-100',
       loadingIcon: 'white',
     },
     secondary: {
-      base: 'bg-surface-white text-primary-base before:border-2 before:border-primary-base before:hover:border-4 before:hover:border-primary-base before:focus:border-4 before:focus:border-primary-150',
-      disabled: 'text-surface-400 before:border-surface-200',
-      loadingIcon: 'primary',
-    },
-    surface: {
-      base: 'bg-surface-white text-surface-black before:border-2 before:border-surface-black before:hover:border-4 before:hover:border-surface-black before:focus:border-4 before:focus:border-info-500',
-      disabled: 'text-surface-400 before:border-surface-200',
+      base: 'bg-surface-white text-surface border-surface-100  hover:bg-surface-50 hover:border-surface-300 active:bg-surface-50 active:shadow-inner-md-pressed active:border-surface-100',
+      disabled: 'text-surface-300 bg-surface-100 border-surface-100',
       loadingIcon: 'neutral',
     },
-    breadcrumb: {
-      base: 'bg-surface-white text-primary-600 before:border-2 before:border-primary-600 before:hover:border-4 before:hover:border-primary-600 before:focus:border-4 before:focus:border-primary-150',
-      disabled: 'text-surface-400 before:border-surface-200',
-      loadingIcon: 'primary',
+    surface: {
+      base: 'bg-surface-black border-surface-white text-surface-white hover:bg-surface-800 active:bg-surface-800 focus:text-surface-black active:text-surface-white active:border-surface-800',
+      disabled: 'text-surface-300 bg-surface-100 border-surface-100',
+      loadingIcon: 'neutral',
     },
   },
   iconPosition: {
-    left: '[&>*:first-child]:order-first',
-    right: '[&>*:first-child]:order-last',
+    leading: '[&>*:first-child]:order-first',
+    trailing: '[&>*:first-child]:order-last',
   },
   loadingIcon: {
-    primary: 'white',
+    primary: 'primary',
     secondary: 'primary',
-    surface: 'neutral',
+    surface: 'primary',
   },
   size: {
-    xs: 'text-xs py-xs',
-    sm: 'text-sm p-sm',
-    lg: 'text-md p-2.5',
+    xs: {
+      base: 'text-xs px-sm py-xs',
+      iconOnly: 'p-xs',
+    },
+    sm: {
+      base: 'text-sm px-sm py-sm',
+      iconOnly: 'p-sm',
+    },
+    md: {
+      base: 'text-md px-md py-sm',
+      iconOnly: 'p-sm',
+    },
+    lg: {
+      base: 'text-lg px-xl py-md',
+      iconOnly: 'p-md',
+    },
+    xl: {
+      base: 'text-xl px-2xl py-lg',
+      iconOnly: 'p-xl',
+    },
   },
 }
 
@@ -66,7 +78,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
-      className,
+      className = '',
       variant = 'primary',
       disabled,
       submitting,
@@ -74,8 +86,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       target,
       type = 'button',
       icon,
-      iconPosition = 'right',
-      size = 'lg',
+      iconPosition = 'leading',
+      size = 'md',
       ...props
     },
     forwardedRef
@@ -101,9 +113,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Link href={href} target={target} disabled={disabled}>
         <ConditionalButton
-          className={`${className} before:border-1 relative inline-flex items-center justify-center rounded text-base font-bold outline-none transition-colors before:absolute before:top-[0px] before:right-[0px] before:bottom-[0px] before:left-[0px] before:rounded before:border ${
-            buttonFamilyClasses['size'][size]
-          } ${buttonFamilyClasses['variant'][variant][getState()]}`}
+          className={`relative inline-flex items-center border justify-center rounded-full font-bold transition-colors leading-none focus:bg-surface-white focus:border-info-500 focus:outline focus:outline-info-500/50 focus:outline-xs focus:shadow-none active:outline-none ${
+            buttonFamilyClasses['size'][size][children ? 'base' : 'iconOnly']
+          } ${
+            buttonFamilyClasses['variant'][variant][getState()]
+          } ${className}`}
           disabled={disabled}
           type={type}
           ref={forwardedRef}
@@ -114,10 +128,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               <Loading
                 variant={
                   disabled
-                    ? 'white'
+                    ? 'primary'
                     : buttonFamilyClasses['loadingIcon'][variant]
                 }
-                size='md'
+                size='sm'
               />
             </span>
           )}
@@ -125,17 +139,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             className={`${
               submitting ? 'opacity-0' : 'opacity-100'
             } z-10 inline-flex items-center justify-center ${
-              size === 'xs' ? 'gap-0' : 'gap-xs'
-            } ${buttonFamilyClasses['iconPosition'][iconPosition]} ${
-              children ? 'px-sm' : 'px-0'
-            }`}
+              size === 'xs' ? 'gap-md' : 'gap-sm'
+            } ${buttonFamilyClasses['iconPosition'][iconPosition]}`}
           >
-            {icon && icon}
-            {children && (
-              <Typography className='font-bold' size={'lg'}>
-                {children}
-              </Typography>
-            )}
+            {icon && <span>{icon}</span>}
+            {children}
           </span>
         </ConditionalButton>
       </Link>

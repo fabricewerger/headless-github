@@ -1,4 +1,4 @@
-import { BeakerIcon } from '@heroicons/react/24/solid'
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from './Button'
@@ -20,20 +20,15 @@ const button: Meta<typeof Button> = {
       control: {
         type: 'select',
       },
-      options: ['primary', 'secondary', 'surface', 'breadcrumb'],
+      options: ['primary', 'secondary', 'surface'],
     },
     size: {
       name: 'size',
       description: 'Select the size',
       control: {
-        type: 'radio',
+        type: 'select',
       },
-      labels: {
-        sm: 'small',
-        lg: 'large',
-      },
-      options: ['sm', 'lg'],
-      defaultValue: 'lg',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     disabled: {
       name: 'disabled',
@@ -78,6 +73,11 @@ const button: Meta<typeof Button> = {
         disable: true,
       },
     },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
   },
 }
 
@@ -95,16 +95,23 @@ const BaseButton: Story = {
 export const Primary: Story = {
   ...BaseButton,
   args: {
+    size: 'md',
     children: 'Button CTA',
     variant: 'primary',
     disabled: false,
     submitting: false,
   },
+  render: (args) => (
+    <div className='p-4 bg-surface-100/40'>
+      <Button {...args} />
+    </div>
+  ),
 }
 
 export const Secondary: Story = {
   ...BaseButton,
   args: {
+    size: 'md',
     children: 'Button CTA',
     variant: 'secondary',
     disabled: false,
@@ -115,6 +122,7 @@ export const Secondary: Story = {
 export const Surface: Story = {
   ...BaseButton,
   args: {
+    size: 'md',
     children: 'Button CTA',
     variant: 'surface',
     disabled: false,
@@ -124,13 +132,35 @@ export const Surface: Story = {
 
 export const WithIcon: Story = {
   ...BaseButton,
+  render: (args) => (
+    <div className='p-4 bg-surface-100/40'>
+      <Button {...args} />
+    </div>
+  ),
   args: {
+    size: 'md',
     children: 'Button CTA',
     variant: 'primary',
     disabled: false,
     submitting: false,
-    icon: <BeakerIcon className='h-4 w-4' />,
-    iconPosition: 'left',
-    className: 'svg-hover-secondary-500',
+    icon: <ArrowRightIcon className='h-5 w-5 ' />,
+    iconPosition: 'trailing',
+  },
+}
+
+export const IconOnly: Story = {
+  ...BaseButton,
+  render: (args) => (
+    <div className='p-4 bg-surface-100/40'>
+      <Button {...args} />
+    </div>
+  ),
+  args: {
+    size: 'md',
+    variant: 'primary',
+    disabled: false,
+    submitting: false,
+    icon: <ArrowRightIcon className='h-5 w-5 ' />,
+    iconPosition: 'trailing',
   },
 }

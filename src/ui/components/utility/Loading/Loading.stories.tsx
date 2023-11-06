@@ -20,7 +20,7 @@ const loading: Meta<typeof Loading> = {
       control: {
         type: 'select',
       },
-      options: ['primary', 'neutral', 'white'],
+      options: ['primary', 'surface', 'neutral'],
     },
   },
 }
@@ -31,6 +31,28 @@ type Story = StoryObj<typeof Loading>
 export const Primary: Story = {
   render: (args) => (
     <div className='p-4'>
+      <Loading {...args} />
+    </div>
+  ),
+}
+
+export const Surface: Story = {
+  args: {
+    variant: 'surface',
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Loading {...args} />
+    </div>
+  ),
+}
+
+export const Neutral: Story = {
+  args: {
+    variant: 'neutral',
+  },
+  render: (args) => (
+    <div className='p-4 bg-primary'>
       <Loading {...args} />
     </div>
   ),

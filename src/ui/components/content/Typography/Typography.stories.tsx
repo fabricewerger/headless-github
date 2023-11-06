@@ -23,7 +23,7 @@ const typography: Meta<typeof Typography> = {
           span: 'span',
         },
       },
-      options: ['p', 'span'],
+      options: ['p', 'span', 'h1', 'h2', 'h3'],
       defaultValue: 'p',
     },
     size: {
@@ -58,7 +58,20 @@ const typography: Meta<typeof Typography> = {
 export default typography
 type Story = StoryObj<typeof Typography>
 
-export const Primary: Story = {
+export const Heading: Story = {
+  args: {
+    as: 'h2',
+    children: `Lorem ipsum dolor sit ame`,
+    size: 'md',
+  },
+  render: (args) => (
+    <div className='p-4'>
+      <Typography {...args} />
+    </div>
+  ),
+}
+
+export const Paragraph: Story = {
   args: {
     as: 'p',
     children: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce congue magna felis, non interdum sapien lacinia blandit. Morbi dui augue, auctor id est nec, cursus viverra ipsum. In ut ex iaculis.`,

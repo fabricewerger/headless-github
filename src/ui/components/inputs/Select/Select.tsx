@@ -1,13 +1,8 @@
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CheckIcon,
-} from '@heroicons/react/24/outline'
 import * as RadixSelect from '@radix-ui/react-select'
 import { SelectProps } from '@radix-ui/react-select'
 import { type ReactNode, forwardRef } from 'react'
 
-import FormInput from '@/ui/components/inputs/FormControl'
+import { ChevronDownIcon, ChevronUpIcon, CheckIcon } from '@/icons/index'
 
 interface SelectComponentProps extends SelectProps {
   id: string
@@ -30,19 +25,19 @@ const inputFamilyClasses: IInputFamilyClasses = {
   state: {
     disabled: {
       input:
-        'bg-surface-200 border-surface-200 data-[placeholder]:text-surface-600',
+        'bg-surface-50 border-surface-100 data-[placeholder]:text-surface-300',
     },
     error: {
       input:
-        'bg-white border-error-500 outline outline-4 outline-error-50 data-[placeholder]:text-surface-500',
+        'bg-white border-error-500 outline outline-xs outline-error-50 data-[placeholder]:text-surface-500',
     },
     success: {
       input:
-        'bg-white border-success-500 outline outline-4 outline-success-50 data-[placeholder]:text-surface-500',
+        'bg-white border-success-500 outline outline-xs outline-success-50 data-[placeholder]:text-surface-500',
     },
     default: {
       input:
-        'bg-white border-surface-200 focus:outline focus:outline-4 focus:outline-info-50 focus:border-info-500 data-[placeholder]:text-surface-500 text-surface-black',
+        'bg-white border-surface-200 focus:outline focus:outline-xs focus:outline-info-50 focus:border-info-500 data-[placeholder]:text-surface-500 text-surface-black',
     },
   },
 }
@@ -76,55 +71,60 @@ const Select = ({
   }
 
   return (
-    <FormInput
-      id={id}
+    <RadixSelect.Root
+      name={id}
       required={required}
-      label={label}
-      hint={hint}
       disabled={disabled}
-      error={error}
-      success={success}
+      {...props}
     >
-      <RadixSelect.Root name={id} required={required} {...props}>
-        <RadixSelect.Trigger
-          className={`inline-flex items-center justify-between rounded-[2px] border px-[12px] py-[7px] text-md transition-colors data-[state="open"]:border-opacity-0 ${
-            inputFamilyClasses['state'][getState()]['input']
-          }`}
-          title={label || title}
-        >
-          <RadixSelect.Value>
-            {triggerText ? (
-              <span className='mr-sm text-surface-500'>
-                {triggerText}
-                <span className='ml-xs text-surface-black'>{value}</span>
+      <RadixSelect.Trigger
+        className={`inline-flex items-center justify-between rounded-xs border px-md py-sm text-md transition-colors data-[state="open"]:border-opacity-0 ${
+          inputFamilyClasses['state'][getState()]['input']
+        }`}
+        title={label || title}
+      >
+        <RadixSelect.Value>
+          {triggerText ? (
+            <span className='mr-sm text-surface-500'>
+              {triggerText}
+              <span
+                className={`ml-xs ${
+                  disabled ? 'text-surface-300' : 'text-surface-black'
+                }`}
+              >
+                {value || placeholder}
               </span>
-            ) : (
-              value ||
-              (placeholder && (
-                <span className='mr-sm text-surface-500'>{placeholder}</span>
-              ))
-            )}
-          </RadixSelect.Value>
-          <RadixSelect.Icon className='pointer-events-none ml-sm flex h-6 cursor-default items-center justify-center'>
+            </span>
+          ) : (
+            value ||
+            (placeholder && (
+              <span className='mr-sm text-surface-500'>{placeholder}</span>
+            ))
+          )}
+        </RadixSelect.Value>
+        <RadixSelect.Icon
+          className={`pointer-events-none ml-sm flex w-md h-md cursor-default items-center justify-center ${
+            disabled ? 'text-surface-300' : 'text-surface-black'
+          }`}
+        >
+          <ChevronDownIcon />
+        </RadixSelect.Icon>
+      </RadixSelect.Trigger>
+      <RadixSelect.Portal>
+        <RadixSelect.Content
+          align='center'
+          className='w-full animate-fadein overflow-hidden rounded bg-surface-white shadow-lg'
+        >
+          <RadixSelect.ScrollUpButton className='flex h-6 cursor-default items-center justify-center'>
+            <ChevronUpIcon />
+          </RadixSelect.ScrollUpButton>
+          <RadixSelect.Viewport>{children}</RadixSelect.Viewport>
+          <RadixSelect.ScrollDownButton className='flex h-6 cursor-default items-center justify-center'>
             <ChevronDownIcon />
-          </RadixSelect.Icon>
-        </RadixSelect.Trigger>
-        <RadixSelect.Portal>
-          <RadixSelect.Content
-            align='center'
-            className='w-full animate-fadein overflow-hidden rounded bg-surface-white shadow-lg'
-          >
-            <RadixSelect.ScrollUpButton className='flex h-6 cursor-default items-center justify-center'>
-              <ChevronUpIcon />
-            </RadixSelect.ScrollUpButton>
-            <RadixSelect.Viewport>{children}</RadixSelect.Viewport>
-            <RadixSelect.ScrollDownButton className='flex h-6 cursor-default items-center justify-center'>
-              <ChevronDownIcon />
-            </RadixSelect.ScrollDownButton>
-          </RadixSelect.Content>
-        </RadixSelect.Portal>
-      </RadixSelect.Root>
-    </FormInput>
+          </RadixSelect.ScrollDownButton>
+        </RadixSelect.Content>
+      </RadixSelect.Portal>
+    </RadixSelect.Root>
   )
 }
 

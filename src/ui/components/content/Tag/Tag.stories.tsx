@@ -33,6 +33,7 @@ const tag: Meta<typeof Tag> = {
       control: {
         type: 'radio',
       },
+      options: ['error', 'info', 'attention', 'surface'],
     },
     icon: {
       table: {
@@ -96,7 +97,7 @@ export const WithIcon: Story = {
   args: {
     children: 'Almost sold out',
     size: 'sm',
-    variant: 'icon',
+    variant: 'surface',
     icon: <EyeIcon className='h-4 w-4' />,
     iconPosition: 'left',
   },
