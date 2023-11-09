@@ -83,6 +83,8 @@ In order to keep this application fast, adaptable, and easy to work with, it's c
 
 ## General Principles
 
+More information can be found [Here](https://confluence.youweagency.com/display/YHF/Component-based+development)
+
 ## Built With
 
 - [NextJS](https://nextjs.org/) - A framework build on top of react which allows for easy SSR
