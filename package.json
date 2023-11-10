@@ -10,6 +10,7 @@
     "generate:tokens": "node ./src/lib/utils/transformTokens.js",
     "generate:schema": "graphql-code-generator --config codegen.ts --watch",
     "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "dev": "next dev",
     "pre-commit": "lint-staged",
     "build": "next build",
